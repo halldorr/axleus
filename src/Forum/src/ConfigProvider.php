@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
-namespace PageManager;
+namespace Forum;
+
+use Mezzio\Application;
+use Mezzio\Container\ApplicationConfigInjectionDelegator;
 
 /**
- * The configuration provider for the PageManager module
+ * The configuration provider for the Forum module
  *
  * @see https://docs.laminas.dev/laminas-component-installer/
  */
@@ -18,36 +21,24 @@ class ConfigProvider
      * To add a bit of a structure, each section is defined in a separate
      * method which returns an array with its configuration.
      */
-    public function __invoke(): array
+    public function __invoke() : array
     {
         return [
             'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
             'routes'       => $this->getRoutes(),
-            'tactician'    => $this->getTacticianConfig(),
         ];
     }
 
     /**
      * Returns the container dependencies
      */
-    public function getDependencies(): array
+    public function getDependencies() : array
     {
         return [
-            'aliases' => [],
-            'factories' => [
-                Handler\PageHandler::class => Handler\PageHandlerFactory::class,
-                Storage\PageRepository::class => Storage\PageRepositoryFactory::class,
-                Storage\SavePageCommandHandler::class => Storage\SavePageCommandHandlerFactory::class,
+            'invokables' => [
             ],
-        ];
-    }
-
-    public function getTacticianConfig(): array
-    {
-        return [
-            'handler-map' => [
-                Storage\SavePageCommand::class => Storage\SavePageCommandHandler::class,
+            'factories'  => [
             ],
         ];
     }
@@ -58,33 +49,33 @@ class ConfigProvider
         $settings = require self::SETTINGS_PATH;
         /** @var bool|null */
         /** @psalm-suppress InvalidArrayOffset */
-        $flag = $settings[\Forum\ConfigProvider::class]['serve-forum-from-root'] ?? null;
+        $flag = $settings[static::class]['serve-forum-from-root'] ?? null;
 
         $routes = [
             [
                 'path'            => '/',
                 'name'            => 'home',
-                'middleware'      => Handler\PageHandler::class,
+                'middleware'      => Handler\ForumHandler::class,
                 'allowed_methods' => ['GET'],
             ],
             [
-                'path'            => '/{title:[a-zA-Z]+}',
-                'name'            => 'page',
-                'middleware'      => Handler\PageHandler::class,
+                'path'            => '/' . $settings[static::class]['base-uri-segment'] . '[/{title:[a-zA-Z-]+}]',
+                'name'            => 'forum',
+                'middleware'      => Handler\ForumHandler::class,
                 'allowed_methods' => ['GET'],
             ],
         ];
-        return ! $flag ? $routes : [];
+        return $flag ? $routes : [];;
     }
 
     /**
      * Returns the templates configuration
      */
-    public function getTemplates(): array
+    public function getTemplates() : array
     {
         return [
             'paths' => [
-                'page-manager' => [__DIR__ . '/../templates/page-manager'],
+                'forum'    => [__DIR__ . '/../templates/forum'],
             ],
         ];
     }

@@ -92,8 +92,7 @@
             "PageManager\\": "src/PageManager/src/",
             "UserManager\\": "src/UserManager/src/",
             "Log\\": "src/Log/src/",
-            "Stdlib\\": "src/Stdlib/src/",
-            "Revel\\": "src/Revel/src/"
+            "Forum\\": "src/Forum/src/"
         }
     },
     "autoload-dev": {

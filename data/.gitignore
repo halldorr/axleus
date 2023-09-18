@@ -1,11 +1,10 @@
 *
 !cache
 !cache/.gitkeep
-!app
-!app/.gitkeep
-!app/settings
-!app/settings/.gitkeep
-!app/settings/authorization.php
-!app/settings/themes.php
-!app/settings/page-manager.php
+!settings
+!settings/.gitkeep
+!settings/acl.php
+!settings/forum.php
+!settings/themes.php
+!settings/page-manager.php
 !.gitignore
