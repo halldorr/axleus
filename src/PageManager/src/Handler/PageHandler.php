@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PageManager\Handler;
 
+use Axleus\Boards;
 use DebugBar\DebugBar;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
@@ -24,6 +25,7 @@ class PageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $boards = new Boards();
         //$page = new PageEntity(null, 'command created');
         //$this->test = $page;
        // $this->commandBus->handle(new Storage\SavePageCommand($page));

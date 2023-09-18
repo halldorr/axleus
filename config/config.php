@@ -14,6 +14,7 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Axleus\ConfigProvider::class,
     \Webinertia\Validator\ConfigProvider::class,
     \Webinertia\Filter\ConfigProvider::class,
     \Laminas\I18n\ConfigProvider::class,

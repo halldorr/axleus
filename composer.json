@@ -43,6 +43,7 @@
     },
     "require": {
         "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+        "axleus/axleus-core": "^0.0.2",
         "bushbaby/flysystem": "^8.0",
         "composer/package-versions-deprecated": "^1.10.99",
         "laminas/laminas-component-installer": "^2.6 || ^3.0",

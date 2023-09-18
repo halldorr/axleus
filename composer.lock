@@ -4,8 +4,72 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7bfb4bc8ef59daf81b27f28697cc87c",
+    "content-hash": "c0d39cd3effda6e34f6875431eb71e3e",
     "packages": [
+        {
+            "name": "axleus/axleus-core",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/axleus/axleus-core.git",
+                "reference": "b963db8c7a112daabf246e54c10f4177aabff301"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/axleus/axleus-core/zipball/b963db8c7a112daabf246e54c10f4177aabff301",
+                "reference": "b963db8c7a112daabf246e54c10f4177aabff301",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-validator": "^2.32.0",
+                "php": "~8.1.0 || ~8.2.0"
+            },
+            "require-dev": {
+                "laminas/laminas-coding-standard": "^2.5",
+                "laminas/laminas-test": "^4.8",
+                "phpstan/extension-installer": "^1.2",
+                "phpunit/phpunit": "^10.2",
+                "psalm/plugin-phpunit": "^0.18.4",
+                "vimeo/psalm": "^5.7.7"
+            },
+            "suggest": {
+                "laminas/laminas-component-installer": "^3.0, required for configuration injection"
+            },
+            "type": "library",
+            "extra": {
+                "laminas": {
+                    "config-provider": "Axleus\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Axleus\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Joey Smith",
+                    "email": "jsmith@webinertia.net",
+                    "homepage": "https://webinertia.net/"
+                }
+            ],
+            "description": "Axleus core package",
+            "homepage": "https://github.com/orgs/axleus/discussions",
+            "keywords": [
+                "axleus",
+                "mezzio",
+                "webinertia"
+            ],
+            "support": {
+                "issues": "https://github.com/axleus/axleus-core/issues",
+                "source": "https://github.com/axleus/axleus-core/tree/0.0.2"
+            },
+            "time": "2023-09-18T07:05:21+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",
