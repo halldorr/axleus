@@ -8,7 +8,7 @@ use Psr\Container\ContainerInterface;
 
 class ForumMiddlewareFactory
 {
-    public function __invoke(ContainerInterface $container) : ForumMiddleware
+    public function __invoke(ContainerInterface $container): ForumMiddleware
     {
         return new ForumMiddleware();
     }

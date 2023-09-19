@@ -13,6 +13,6 @@ class ForumMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
-        // $response = $handler->handle($request);
+        return $handler->handle($request);
     }
 }

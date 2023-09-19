@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Forum\Middleware\ForumMiddleware;
 use Log\MonologMiddleware;
 use Laminas\Stratigility\Middleware\ErrorHandler;
 use Mezzio\Application;
@@ -74,6 +75,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->pipe(IdentityMiddleware::class);
     $app->pipe(MonologMiddleware::class);
     $app->pipe(DefaultParamsMiddleware::class);
+    $app->pipe(ForumMiddleware::class);
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);
 
