@@ -47,25 +47,26 @@ class ConfigProvider
     {
         /** @var array<array-key, mixed> $settings*/
         $settings = require self::SETTINGS_PATH;
-        /** @var bool|null */
         /** @psalm-suppress InvalidArrayOffset */
-        $flag = $settings[static::class]['serve-forum-from-root'] ?? null;
+        $flag = $settings[static::class]['serve-forum-from-root'] ?? false;
 
         $routes = [
             [
-                'path'            => '/',
-                'name'            => 'home',
-                'middleware'      => Handler\ForumHandler::class,
-                'allowed_methods' => ['GET'],
-            ],
-            [
-                'path'            => '/' . $settings[static::class]['base-uri-segment'] . '[/{title:[a-zA-Z-]+}]',
+                'path'            => '/' . $settings[static::class]['base-uri-segment'] . '/{forumName}',
                 'name'            => 'forum',
                 'middleware'      => Handler\ForumHandler::class,
                 'allowed_methods' => ['GET'],
             ],
         ];
-        return $flag ? $routes : [];;
+        if ($flag) {
+            $routes[] = [
+                'path'            => '/',
+                'name'            => 'home',
+                'middleware'      => Handler\ForumHandler::class,
+                'allowed_methods' => ['GET'],
+            ];
+        }
+        return $routes;
     }
 
     /**

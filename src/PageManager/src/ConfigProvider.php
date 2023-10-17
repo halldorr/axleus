@@ -68,7 +68,7 @@ class ConfigProvider
                 'allowed_methods' => ['GET'],
             ],
             [
-                'path'            => '/{title:[a-zA-Z]+}',
+                'path'            => '/{title:[a-zA-Z-]+}', // + char must be present
                 'name'            => 'page',
                 'middleware'      => Handler\PageHandler::class,
                 'allowed_methods' => ['GET'],

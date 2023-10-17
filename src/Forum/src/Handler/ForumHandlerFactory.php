@@ -9,8 +9,10 @@ use Psr\Container\ContainerInterface;
 
 class ForumHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : ForumHandler
+    public function __invoke(ContainerInterface $container): ForumHandler
     {
-        return new ForumHandler($container->get(TemplateRendererInterface::class));
+        /** @var TemplateRendererInterface $renderer */
+        $renderer = $container->get(TemplateRendererInterface::class);
+        return new ForumHandler($renderer);
     }
 }
