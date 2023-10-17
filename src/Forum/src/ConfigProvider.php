@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forum;
 
+use League\Tactician;
 use Mezzio\Application;
 use Mezzio\Container\ApplicationConfigInjectionDelegator;
 
@@ -15,6 +16,35 @@ use Mezzio\Container\ApplicationConfigInjectionDelegator;
 class ConfigProvider
 {
     private const SETTINGS_PATH = __DIR__ . '/../../../data/settings/forum.php';
+    /** @var array<array-key, mixed> $settings */
+    private array $settings;
+    private bool $routeFlag;
+    private string $uriSegment;
+    private string $route;
+
+    public function __construct()
+    {
+        /**
+         * @psalm-suppress UnresolvableInclude
+         * @psalm-suppress MixedAssignment
+         * */
+        $this->settings = require self::SETTINGS_PATH;
+
+        /**
+         * @psalm-suppress MixedAssignment
+         * @psalm-suppress MixedArrayAccess
+         * */
+        $this->routeFlag = $this->settings[static::class]['serve-forum-from-root'] ?? false;
+
+        /**
+         * @psalm-suppress MixedAssignment
+         * @psalm-suppress MixedArrayAccess
+         * */
+        $this->uriSegment = $this->settings[static::class]['base-uri-segment'];
+
+        /** @psalm-suppress MixedOperand */
+        $this->route = $this->routeFlag ? '/' : '/' . $this->uriSegment;
+    }
     /**
      * Returns the configuration array
      *
@@ -24,9 +54,10 @@ class ConfigProvider
     public function __invoke() : array
     {
         return [
-            'dependencies' => $this->getDependencies(),
-            'templates'    => $this->getTemplates(),
-            'routes'       => $this->getRoutes(),
+            'dependencies'        => $this->getDependencies(),
+            'templates'           => $this->getTemplates(),
+            'routes'              => $this->getRoutes(),
+            'middleware_pipeline' => $this->getPipelineConfig(),
         ];
     }
 
@@ -39,26 +70,38 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories'  => [
+                Handler\ForumHandler::class       => Handler\ForumHandlerFactory::class,
+                Middleware\ForumMiddleware::class => Middleware\ForumMiddlewareFactory::class,
             ],
         ];
     }
 
+    public function getPipelineConfig(): array
+    {
+        return [
+            [
+                'path'       => $this->route,
+                'middleware' => Middleware\ForumMiddleware::class,
+            ],
+        ];
+    }
+
+    /**
+     * @psalm-suppress InvalidArrayOffset
+     * @psalm-suppress MixedAssignment
+     * */
     public function getRoutes(): array
     {
-        /** @var array<array-key, mixed> $settings*/
-        $settings = require self::SETTINGS_PATH;
-        /** @psalm-suppress InvalidArrayOffset */
-        $flag = $settings[static::class]['serve-forum-from-root'] ?? false;
 
         $routes = [
             [
-                'path'            => '/' . $settings[static::class]['base-uri-segment'] . '/{forumName}',
+                'path'            => $this->route . '/{forumName}',
                 'name'            => 'forum',
                 'middleware'      => Handler\ForumHandler::class,
                 'allowed_methods' => ['GET'],
             ],
         ];
-        if ($flag) {
+        if ($this->routeFlag) {
             $routes[] = [
                 'path'            => '/',
                 'name'            => 'home',
