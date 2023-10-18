@@ -17,7 +17,7 @@ use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
 use Mezzio\Session\SessionMiddleware;
 use Psr\Container\ContainerInterface;
-use ThemeManager\Middleware\DefaultParamsMiddleware;
+use Axleus\Middleware\DefaultParamsMiddleware;
 use UserManager\Middleware\IdentityMiddleware;
 
 /**

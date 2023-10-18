@@ -12,6 +12,26 @@ namespace PageManager;
 class ConfigProvider
 {
     private const SETTINGS_PATH = __DIR__ . '/../../../data/settings/forum.php';
+
+    private array $settings;
+    private bool $routeFlag;
+
+    public function __construct()
+    {
+        /**
+         * @psalm-suppress UnresolvableInclude
+         * @psalm-suppress MixedAssignment
+         * */
+        $this->settings = require self::SETTINGS_PATH;
+
+        /**
+         * @psalm-suppress MixedAssignment
+         * @psalm-suppress MixedArrayAccess
+         * */
+        $this->routeFlag = $this->settings[static::class]['serve-forum-from-root'] ?? false;
+
+    }
+
     /**
      * Returns the configuration array
      *
@@ -54,12 +74,6 @@ class ConfigProvider
 
     public function getRoutes(): array
     {
-        /** @var array<array-key, mixed> $settings*/
-        $settings = require self::SETTINGS_PATH;
-        /** @var bool|null */
-        /** @psalm-suppress InvalidArrayOffset */
-        $flag = $settings[\Forum\ConfigProvider::class]['serve-forum-from-root'] ?? null;
-
         $routes = [
             [
                 'path'            => '/',
@@ -74,7 +88,7 @@ class ConfigProvider
                 'allowed_methods' => ['GET'],
             ],
         ];
-        return ! $flag ? $routes : [];
+        return ! $this->routeFlag ? $routes : [];
     }
 
     /**
