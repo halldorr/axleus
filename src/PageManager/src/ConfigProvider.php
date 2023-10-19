@@ -29,7 +29,6 @@ class ConfigProvider
          * @psalm-suppress MixedArrayAccess
          * */
         $this->routeFlag = $this->settings[static::class]['serve-forum-from-root'] ?? false;
-
     }
 
     /**
@@ -56,8 +55,8 @@ class ConfigProvider
         return [
             'aliases' => [],
             'factories' => [
-                Handler\PageHandler::class => Handler\PageHandlerFactory::class,
-                Storage\PageRepository::class => Storage\PageRepositoryFactory::class,
+                Handler\PageHandler::class            => Handler\PageHandlerFactory::class,
+                Storage\PageRepository::class         => Storage\PageRepositoryFactory::class,
                 Storage\SavePageCommandHandler::class => Storage\SavePageCommandHandlerFactory::class,
             ],
         ];
