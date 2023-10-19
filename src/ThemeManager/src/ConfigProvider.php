@@ -17,7 +17,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => $this->getDependencies(),
-            'middleware_pipeline' => $this->getPipeConfig(),
+            //'middleware_pipeline' => $this->getPipeConfig(),
         ];
     }
 
@@ -25,9 +25,7 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                LaminasViewRenderer::class                => RendererFactory::class,
-                Middleware\AjaxRequestMiddleware::class   => Middleware\AjaxRequestMiddlewareFactory::class,
-                Middleware\DefaultParamsMiddleware::class => Middleware\DefaultParamsMiddlewareFactory::class,
+                LaminasViewRenderer::class => RendererFactory::class,
             ],
         ];
     }
@@ -35,12 +33,9 @@ class ConfigProvider
     public function getPipeConfig(): array
     {
         return [
-            Middleware\AjaxRequestMiddleware::class => [
-                'middleware' => [
-                    Middleware\AjaxRequestMiddleware::class
-                ],
-                'priority' => 4,
-            ],
+            // Middleware\AjaxRequestMiddleware::class => [
+
+            // ],
         ];
     }
 

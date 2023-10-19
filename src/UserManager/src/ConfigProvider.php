@@ -28,12 +28,13 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies'   => $this->getDependencies(),
-            'templates'      => $this->getTemplates(),
-            'authentication' => $this->getAuthConfig(),
-            'routes'         => $this->getRoutes(),
-            'form_elements'  => $this->getFormElementConfig(),
-            'tactician'      => $this->getCommandConfig(),
+            'dependencies'        => $this->getDependencies(),
+            'middleware_pipeline' => $this->getPipelineConfig(),
+            'templates'           => $this->getTemplates(),
+            'authentication'      => $this->getAuthConfig(),
+            'routes'              => $this->getRoutes(),
+            'form_elements'       => $this->getFormElementConfig(),
+            'tactician'           => $this->getCommandConfig(),
         ];
     }
 
@@ -59,6 +60,18 @@ class ConfigProvider
             ],
             'invokables' => [
                 Auth\LogoutCommandHandler::class => Auth\LogoutCommandHandler::class,
+            ],
+        ];
+    }
+
+    public function getPipelineConfig(): array
+    {
+        return [
+            [
+                'middleware' => [
+                    Middleware\IdentityMiddleware::class,
+                ],
+                'priority' => 10000
             ],
         ];
     }

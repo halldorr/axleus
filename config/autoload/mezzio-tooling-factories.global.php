@@ -11,10 +11,5 @@
 declare(strict_types=1);
 
 return [
-    'dependencies' => [
-        'factories' => [
-            Forum\Handler\ForumHandler::class => Forum\Handler\ForumHandlerFactory::class,
-            Forum\Middleware\ForumMiddleware::class => Forum\Middleware\ForumMiddlewareFactory::class,
-        ],
-    ],
+
 ];
