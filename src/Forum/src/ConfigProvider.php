@@ -82,6 +82,7 @@ class ConfigProvider
             [
                 'path'       => $this->route,
                 'middleware' => Middleware\ForumMiddleware::class,
+                'priority'   => 2000
             ],
         ];
     }

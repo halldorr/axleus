@@ -1,5 +1,5 @@
 <?php
-
+// todo: migrate this module to axleus/axleus-core
 declare(strict_types=1);
 
 namespace Log;
@@ -24,6 +24,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => $this->getDependencies(),
+            'middleware_pipeline' => $this->getPipelineConfig(),
             'templates'    => $this->getTemplates(),
             'log'          => $this->getRepositoryConfig(),
         ];
@@ -42,6 +43,18 @@ class ConfigProvider
                 LoggerInterface::class   => LogFactory::class,
                 MonologMiddleware::class => MonologMiddlewareFactory::class,
                 RepositoryHandler::class => RepositoryHandlerFactory::class,
+            ],
+        ];
+    }
+
+    public function getPipelineConfig(): array
+    {
+        return [
+            [
+                'middleware' => [
+                    MonologMiddleware::class,
+                ],
+                'priority'   => 9000,
             ],
         ];
     }
