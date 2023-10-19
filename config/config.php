@@ -14,12 +14,10 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
-    \Axleus\ConfigProvider::class,
     \Webinertia\Validator\ConfigProvider::class,
     \Webinertia\Filter\ConfigProvider::class,
     \Laminas\I18n\ConfigProvider::class,
     \BsbFlysystem\ConfigProvider::class,
-    \Stdlib\ConfigProvider::class,
     \Log\ConfigProvider::class,
     \TacticianModule\ConfigProvider::class,
     \Laminas\Form\ConfigProvider::class,
@@ -33,18 +31,20 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Authentication\Session\ConfigProvider::class,
     \Mezzio\Session\ConfigProvider::class,
     \Mezzio\Authentication\ConfigProvider::class,
-    \UserManager\ConfigProvider::class,
     \Webinertia\Utils\ConfigProvider::class,
-    \PageManager\ConfigProvider::class,
     \Laminas\Hydrator\ConfigProvider::class,
     \Laminas\Db\ConfigProvider::class,
     //\PhpMiddleware\PhpDebugBar\ConfigProvider::class,
     \Mezzio\LaminasView\ConfigProvider::class,
     \Mezzio\Tooling\ConfigProvider::class,
-    \ThemeManager\ConfigProvider::class,
     \Mezzio\Helper\ConfigProvider::class,
     \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
+    // application level packages
+    \Forum\ConfigProvider::class,
+    \PageManager\ConfigProvider::class,
+    \ThemeManager\ConfigProvider::class,
+    \UserManager\ConfigProvider::class,
     // Include cache configuration
     new ArrayProvider($cacheConfig),
     ConfigProvider::class,
@@ -59,6 +59,7 @@ $aggregator = new ConfigAggregator([
         },
     // Default App module config
     App\ConfigProvider::class,
+    \Axleus\ConfigProvider::class,
     // Load application config in a pre-defined order in such a way that local settings
     // overwrite global settings. (Loaded as first to last):
     //   - `global.php`
@@ -70,7 +71,7 @@ $aggregator = new ConfigAggregator([
      * loading in this order allows for any development mode settings to override them
      * without having to change the base values
      */
-    new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/app/settings/{,*}.php'),
+    new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/settings/{,*}.php'),
     new PhpFileProvider(realpath(__DIR__) . '/autoload/{{,*.}global,{,*.}local}.php'),
     // Load development config if it exists
     new PhpFileProvider(realpath(__DIR__) . '/development.config.php'),

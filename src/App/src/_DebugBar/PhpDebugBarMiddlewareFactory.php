@@ -1,7 +1,7 @@
 <?php
 declare (strict_types=1);
 
-namespace App\DebugBar;
+namespace Axleus\DebugBar;
 
 use DebugBar\JavascriptRenderer;
 use Psr\Container\ContainerExceptionInterface;

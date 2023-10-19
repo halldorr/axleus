@@ -19,20 +19,20 @@ use Mezzio\Middleware\ErrorResponseGenerator;
 return [
     'dependencies' => [
         'factories' => [
-            \App\DebugBar\DebugBarMiddleware::class          => \App\DebugBar\DebugBarMiddlewareFactory::class,
-            \DebugBar\Bridge\MonologCollector::class         => \App\DebugBar\MonologCollectorFactory::class,
-            \DebugBar\DataCollector\ConfigCollector::class   => \App\DebugBar\ConfigCollectorFactory::class,
+            \Axleus\DebugBar\DebugBarMiddleware::class       => \Axleus\DebugBar\DebugBarMiddlewareFactory::class,
+            \DebugBar\Bridge\MonologCollector::class         => \Axleus\DebugBar\MonologCollectorFactory::class,
+            \DebugBar\DataCollector\ConfigCollector::class   => \Axleus\DebugBar\ConfigCollectorFactory::class,
             \DebugBar\DebugBar::class                        => \PhpMiddleware\PhpDebugBar\StandardDebugBarFactory::class,
-            \DebugBar\JavascriptRenderer::class              => \App\DebugBar\JavascriptRendererFactory::class,
+            \DebugBar\JavascriptRenderer::class              => \Axleus\DebugBar\JavascriptRendererFactory::class,
             ErrorResponseGenerator::class                    => Container\WhoopsErrorResponseGeneratorFactory::class,
             'Mezzio\Whoops'                                  => Container\WhoopsFactory::class,
             'Mezzio\WhoopsPageHandler'                       => Container\WhoopsPageHandlerFactory::class,
-            \App\DebugBar\PhpDebugBarMiddleware::class       => \App\DebugBar\PhpDebugBarMiddlewareFactory::class,
+            \Axleus\DebugBar\PhpDebugBarMiddleware::class    => \Axleus\DebugBar\PhpDebugBarMiddlewareFactory::class,
             \PhpMiddleware\PhpDebugBar\ConfigProvider::class => \PhpMiddleware\PhpDebugBar\ConfigProvider::class,
         ],
         'delegators' => [
             \DebugBar\DebugBar::class => [
-                \App\DebugBar\StandardDebugBarDelegatorFactory::class,
+                \Axleus\DebugBar\StandardDebugBarDelegatorFactory::class,
             ],
         ],
     ],
@@ -44,15 +44,15 @@ return [
         ],
     ],
     'middleware_pipeline' => [
-        \App\DebugBar\PhpDebugBarMiddleware::class => [
+        \Axleus\DebugBar\PhpDebugBarMiddleware::class => [
             'middleware' => [
-                \App\DebugBar\PhpDebugBarMiddleware::class,
+                \Axleus\DebugBar\PhpDebugBarMiddleware::class,
             ],
             'priority' => 2, // default from package is 1000
         ],
-        \App\DebugBar\DebugBarMiddleware::class => [
+        \Axleus\DebugBar\DebugBarMiddleware::class => [
             'middleware' => [
-                \App\DebugBar\DebugBarMiddleware::class,
+                \Axleus\DebugBar\DebugBarMiddleware::class,
             ],
             'priority' => 3,
         ],
