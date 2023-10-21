@@ -100,7 +100,8 @@
             "AppTest\\": "test/AppTest/",
             "PageManagerTest\\": "test/PagemManagerTest/",
             "Test\\": "test/Test/",
-            "UserManagerTest\\": "test/UserManagerTest/"
+            "UserManagerTest\\": "test/UserManagerTest/",
+            "PluginTest\\": "plugin/test"
         }
     },
     "scripts": {

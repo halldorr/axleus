@@ -1,6 +1,8 @@
 *
 !cache
 !cache/.gitkeep
+!plugin
+!plugin/.gitkeep
 !settings
 !settings/.gitkeep
 !settings/acl.php

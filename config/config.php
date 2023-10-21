@@ -73,6 +73,7 @@ $aggregator = new ConfigAggregator([
      * without having to change the base values
      */
     new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/settings/{,*}.php'),
+    new PhpFileProvider(realpath(__DIR__ . '/../') . '/plugin/src/*/config/{,*}.php'),
     new PhpFileProvider(realpath(__DIR__) . '/autoload/{{,*.}global,{,*.}local}.php'),
     // Load development config if it exists
     new PhpFileProvider(realpath(__DIR__) . '/development.config.php'),
