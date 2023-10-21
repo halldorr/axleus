@@ -71,7 +71,7 @@ class ConfigProvider
                 'middleware' => [
                     Middleware\IdentityMiddleware::class,
                 ],
-                'priority' => 10000
+                'priority' => 10000 // todo: determine best priority for this
             ],
         ];
     }

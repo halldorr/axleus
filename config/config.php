@@ -60,6 +60,7 @@ $aggregator = new ConfigAggregator([
     // Default App module config
     App\ConfigProvider::class,
     \Axleus\ConfigProvider::class,
+    \Axleus\PluginManager\ConfigProvider::class,
     // Load application config in a pre-defined order in such a way that local settings
     // overwrite global settings. (Loaded as first to last):
     //   - `global.php`
@@ -72,6 +73,7 @@ $aggregator = new ConfigAggregator([
      * without having to change the base values
      */
     new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/settings/{,*}.php'),
+    new PhpFileProvider(realpath(__DIR__ . '/../') . '/plugin/src/*/config/{,*}.php'),
     new PhpFileProvider(realpath(__DIR__) . '/autoload/{{,*.}global,{,*.}local}.php'),
     // Load development config if it exists
     new PhpFileProvider(realpath(__DIR__) . '/development.config.php'),

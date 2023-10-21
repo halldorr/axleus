@@ -1,26 +1,24 @@
 {
-    "name": "mezzio/mezzio-skeleton",
-    "description": "Laminas mezzio skeleton. Begin developing PSR-15 middleware applications in seconds!",
+    "name": "axleus/axleus",
+    "description": "Axleus Community Software Platform",
     "type": "project",
     "license": "BSD-3-Clause",
     "keywords": [
-        "laminas",
-        "mezzio",
-        "skeleton",
+        "axleus",
+        "community software",
+        "forum software",
         "middleware",
         "psr",
         "psr-7",
         "psr-11",
         "psr-15"
     ],
-    "homepage": "https://mezzio.dev",
+    "homepage": "https://github.com/axleus",
     "support": {
-        "docs": "https://docs.mezzio.dev/mezzio/",
-        "issues": "https://github.com/mezzio/mezzio-skeleton/issues",
-        "source": "https://github.com/mezzio/mezzio-skeleton",
-        "rss": "https://github.com/mezzio/mezzio-skeleton/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
+        "docs": "https://github.com/axleus/axleus/wiki",
+        "issues": "https://github.com/axleus/axleus/issues",
+        "source": "https://github.com/axleus/axleus",
+        "forum": "https://github.com/orgs/axleus/discussions"
     },
     "config": {
         "sort-packages": true,
@@ -43,13 +41,42 @@
     },
     "require": {
         "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
-        "axleus/axleus-core": "^0.0.2"
+        "axleus/axleus-core": "dev-master",
+        "axleus/axleus-pluginmanager": "dev-master",
+        "bushbaby/flysystem": "^8.0",
+        "composer/package-versions-deprecated": "^1.10.99",
+        "laminas/laminas-component-installer": "^2.6 || ^3.0",
+        "laminas/laminas-config-aggregator": "^1.13",
+        "laminas/laminas-db": "^2.18",
+        "laminas/laminas-diactoros": "^3.0.0",
+        "laminas/laminas-form": "^3.13",
+        "laminas/laminas-hydrator": "^4.14",
+        "laminas/laminas-i18n": "^2.23",
+        "laminas/laminas-servicemanager": "^3.4",
+        "laminas/laminas-stdlib": "^3.6",
+        "league/tactician-command-events": "^0.6.0",
+        "mezzio/mezzio": "3.17.0",
+        "mezzio/mezzio-authentication": "^1.8",
+        "mezzio/mezzio-authentication-session": "^1.8",
+        "mezzio/mezzio-authorization": "^1.8",
+        "mezzio/mezzio-authorization-acl": "^1.9",
+        "mezzio/mezzio-fastroute": "^3.0.3",
+        "mezzio/mezzio-flash": "^1.7",
+        "mezzio/mezzio-helpers": "^5.7",
+        "mezzio/mezzio-laminasviewrenderer": "^2.12",
+        "mezzio/mezzio-session-ext": "^1.18",
+        "mikemix/tactician-module": "^3.2",
+        "monolog/monolog": "^3.4",
+        "ramsey/uuid": "^4.7",
+        "webinertia/webinertia-db": "^0.0.7",
+        "webinertia/webinertia-filter": "^0.0.5",
+        "webinertia/webinertia-utils": "^0.0.10",
+        "webinertia/webinertia-validator": "^0.0.4"
     },
     "require-dev": {
         "filp/whoops": "^2.7.1",
         "laminas/laminas-coding-standard": "^2.5",
         "laminas/laminas-development-mode": "^3.3.0",
-        "laminas/laminas-test": "^4.8",
         "mezzio/mezzio-tooling": "^2.8",
         "php-middleware/php-debug-bar": "^4.2",
         "phpunit/phpunit": "^10.2",
@@ -64,7 +91,8 @@
             "PageManager\\": "src/PageManager/src/",
             "UserManager\\": "src/UserManager/src/",
             "Log\\": "src/Log/src/",
-            "Forum\\": "src/Forum/src/"
+            "Forum\\": "src/Forum/src/",
+            "Plugin\\": "plugin/src"
         }
     },
     "autoload-dev": {
@@ -72,7 +100,8 @@
             "AppTest\\": "test/AppTest/",
             "PageManagerTest\\": "test/PagemManagerTest/",
             "Test\\": "test/Test/",
-            "UserManagerTest\\": "test/UserManagerTest/"
+            "UserManagerTest\\": "test/UserManagerTest/",
+            "PluginTest\\": "plugin/test"
         }
     },
     "scripts": {

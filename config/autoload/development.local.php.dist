@@ -44,17 +44,9 @@ return [
         ],
     ],
     'middleware_pipeline' => [
-        \Axleus\DebugBar\PhpDebugBarMiddleware::class => [
-            'middleware' => [
-                \Axleus\DebugBar\PhpDebugBarMiddleware::class,
-            ],
-            'priority' => 2, // default from package is 1000
-        ],
-        \Axleus\DebugBar\DebugBarMiddleware::class => [
-            'middleware' => [
-                \Axleus\DebugBar\DebugBarMiddleware::class,
-            ],
-            'priority' => 3,
+        [
+            'middleware' => \Axleus\DebugBar\PhpDebugBarMiddleware::class,
+            'priority' => Constants::PIPE_PRIORITIES[\Axleus\DebugBar\PhpDebugBarMiddleware::class],
         ],
     ],
     'phpmiddleware' => [
