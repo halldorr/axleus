@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UserManager\Auth;
 
-use App\CommandBus\AbstractCommand;
+use Axleus\CommandBus\AbstractCommand;
 use Mezzio\Session\SessionInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
