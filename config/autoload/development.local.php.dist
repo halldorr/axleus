@@ -13,6 +13,7 @@ declare(strict_types=1);
  * Developers on your team will then automatically enable them by calling on
  * `composer development-enable`.
  */
+use Axleus\Constants;
 use Mezzio\Container;
 use Mezzio\Middleware\ErrorResponseGenerator;
 
