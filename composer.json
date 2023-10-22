@@ -26,6 +26,11 @@
             "composer/package-versions-deprecated": true,
             "laminas/laminas-component-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "preferred-install": {
+            "axleus/*": "source",
+            "webinertia/*": "source",
+            "*": "dist"
         }
     },
     "extra": {
