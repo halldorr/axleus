@@ -11,7 +11,6 @@ use Mezzio\Authentication\Session\PhpSession;
 use Mezzio\Authentication\UserInterface;
 use Mezzio\Authentication\UserRepositoryInterface;
 use UserManager\Form;
-use UserManager\Middleware;
 
 /**
  * The configuration provider for the UserManager module
@@ -69,9 +68,7 @@ class ConfigProvider
     {
         return [
             [
-                'middleware' => [
-                    Middleware\IdentityMiddleware::class,
-                ],
+                'middleware' => Middleware\IdentityMiddleware::class,
                 'priority' => Constants::PIPE_PRIORITIES[Middleware\IdentityMiddleware::class] // todo: determine best priority for this
             ],
         ];
