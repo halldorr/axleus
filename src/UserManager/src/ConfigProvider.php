@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace UserManager;
 
+use Axleus\Constants;
 use Mezzio\Authentication\AuthenticationInterface;
 use Mezzio\Authentication\AuthenticationMiddleware;
 use Mezzio\Authentication\Session\PhpSession;
@@ -71,7 +72,7 @@ class ConfigProvider
                 'middleware' => [
                     Middleware\IdentityMiddleware::class,
                 ],
-                'priority' => 10000 // todo: determine best priority for this
+                'priority' => Constants::PIPE_PRIORITIES[Middleware\IdentityMiddleware::class] // todo: determine best priority for this
             ],
         ];
     }
