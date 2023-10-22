@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UserManager\Auth;
 
-use App\CommandBus\CommandInterface;
+use Axleus\CommandBus\CommandInterface;
 use Mezzio\Authentication\AuthenticationInterface;
 use Mezzio\Authentication\UserInterface;
 
