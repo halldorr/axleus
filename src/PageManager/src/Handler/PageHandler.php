@@ -31,9 +31,8 @@ class PageHandler implements RequestHandlerInterface
        // $this->commandBus->handle(new Storage\SavePageCommand($page));
 
         // debug message usage
-        // $debug = $request->getAttribute(DebugBar::class);
-        // $debug['messages']->addMessage('test message');
-
+        $debug = $request->getAttribute(DebugBar::class);
+        $debug['messages']->addMessage('test message');
         if ($this->template === null) {
             return new JsonResponse([]);
         }
