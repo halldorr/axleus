@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PageManager;
 
+use Forum\ConfigProvider as ForumConfig;
+
 /**
  * The configuration provider for the PageManager module
  *
@@ -28,7 +30,7 @@ class ConfigProvider
          * @psalm-suppress MixedAssignment
          * @psalm-suppress MixedArrayAccess
          * */
-        $this->routeFlag = $this->settings[static::class]['serve-forum-from-root'] ?? false;
+        $this->routeFlag = $this->settings[ForumConfig::class]['serve-forum-from-root'] ?? false;
     }
 
     /**
