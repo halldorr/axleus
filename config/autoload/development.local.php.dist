@@ -14,6 +14,7 @@ declare(strict_types=1);
  * `composer development-enable`.
  */
 use Axleus\Constants;
+use Axleus\Whoops\WhoopsPageHandlerFactory;
 use Mezzio\Container;
 use Mezzio\Middleware\ErrorResponseGenerator;
 
@@ -27,7 +28,7 @@ return [
             \DebugBar\JavascriptRenderer::class              => \Axleus\DebugBar\JavascriptRendererFactory::class,
             ErrorResponseGenerator::class                    => Container\WhoopsErrorResponseGeneratorFactory::class,
             'Mezzio\Whoops'                                  => Container\WhoopsFactory::class,
-            'Mezzio\WhoopsPageHandler'                       => Container\WhoopsPageHandlerFactory::class,
+            'Mezzio\WhoopsPageHandler'                       => WhoopsPageHandlerFactory::class, // Axleus implementation
             \Axleus\DebugBar\PhpDebugBarMiddleware::class    => \Axleus\DebugBar\PhpDebugBarMiddlewareFactory::class,
             \PhpMiddleware\PhpDebugBar\ConfigProvider::class => \PhpMiddleware\PhpDebugBar\ConfigProvider::class,
         ],
