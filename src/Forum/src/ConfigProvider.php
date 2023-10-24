@@ -28,19 +28,19 @@ class ConfigProvider
          * @psalm-suppress UnresolvableInclude
          * @psalm-suppress MixedAssignment
          * */
-        $this->settings = require self::SETTINGS_PATH;
+        $this->settings = (require self::SETTINGS_PATH)[\Axleus\SettingsProvider::class][\Forum\SettingsProvider::class];
 
         /**
          * @psalm-suppress MixedAssignment
          * @psalm-suppress MixedArrayAccess
          * */
-        $this->routeFlag = $this->settings[static::class]['serve-forum-from-root'] ?? false;
+        $this->routeFlag = $this->settings['serve-forum-from-root'] ?? false;
 
         /**
          * @psalm-suppress MixedAssignment
          * @psalm-suppress MixedArrayAccess
          * */
-        $this->uriSegment = $this->settings[static::class]['base-uri-segment'];
+        $this->uriSegment = $this->settings['base-uri-segment'];
 
         /** @psalm-suppress MixedOperand */
         $this->route = $this->routeFlag ? '/' : '/' . $this->uriSegment;
