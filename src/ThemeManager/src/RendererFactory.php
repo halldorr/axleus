@@ -31,8 +31,8 @@ final class RendererFactory
     {
         /** @var array<string, string[]> */
         $config = $container->has('config') ? $container->get('config') : [];
-        /** @var array<string, string[]> */
-        $themes = $config['theme_manager']['themes'] ?? [];
+        $themeProvider = new SettingsProvider();
+        $activeTheme   = $themeProvider->getActiveTheme();
         /** @var array<string, string[]> */
         $config = $config['templates'] ?? [];
 
@@ -65,22 +65,16 @@ final class RendererFactory
         /** @var array<string, string[]> */
         $allPaths = isset($config['paths']) && $config['paths'] !== [] ? $config['paths'] : [];
         foreach ($allPaths as $namespace => $paths) {
-            $namespace = is_numeric($namespace) ? '' : $namespace;
-            foreach ($paths as $path) {
-                $basePath = realpath(dirname($path));
-                foreach ($themes as $theme) {
-                    if (
-                        $theme['name'] === 'default'
-                        && $theme['active']
-                    ) {
-                        $view->addPath($basePath . '/' . $theme['name'] . '/' . $namespace, $namespace);
-                    } elseif ($theme['name'] !== 'default' && $theme['active']) {
-                        $view->addPath($basePath . '/default/' . $namespace);
-                        $themePath = $basePath . '/' . $theme['name'] . '/' . $namespace;
-                        if (is_dir($themePath)) {
-                            $view->addPath($basePath . '/' . $theme['name'] . '/' . $namespace);
-                        }
-                    }
+            $namespace = is_numeric($namespace) ? null : $namespace;
+            foreach ((array) $paths as $path) {
+                switch(true) {
+                    case $activeTheme === SettingsProvider::DEFAULT_THEME:
+                        $view->addPath($path . '/' . SettingsProvider::DEFAULT_THEME, $namespace);
+                        break;
+                    default:
+                        $view->addPath($path . '/' . SettingsProvider::DEFAULT_THEME, $namespace);
+                        $view->addPath($path . '/' . $activeTheme, $namespace);
+                    break;
                 }
             }
         }

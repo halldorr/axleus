@@ -97,7 +97,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'page-manager' => [__DIR__ . '/../templates/page-manager'],
+                'page-manager' => [__DIR__ . '/../templates/'],
             ],
         ];
     }
