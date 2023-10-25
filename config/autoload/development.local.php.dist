@@ -28,13 +28,16 @@ return [
             \DebugBar\JavascriptRenderer::class              => \Axleus\DebugBar\JavascriptRendererFactory::class,
             ErrorResponseGenerator::class                    => Container\WhoopsErrorResponseGeneratorFactory::class,
             'Mezzio\Whoops'                                  => Container\WhoopsFactory::class,
-            'Mezzio\WhoopsPageHandler'                       => WhoopsPageHandlerFactory::class, // Axleus implementation
+            'Mezzio\Whoops'                                  => Container\WhoopsFactory::class,
             \Axleus\DebugBar\PhpDebugBarMiddleware::class    => \Axleus\DebugBar\PhpDebugBarMiddlewareFactory::class,
             \PhpMiddleware\PhpDebugBar\ConfigProvider::class => \PhpMiddleware\PhpDebugBar\ConfigProvider::class,
         ],
         'delegators' => [
-            \DebugBar\DebugBar::class => [
+            \DebugBar\DebugBar::class  => [
                 \Axleus\DebugBar\StandardDebugBarDelegatorFactory::class,
+            ],
+            'Mezzio\WhoopsPageHandler' => [
+                \Axleus\Whoops\WhoopsPageHandlerDelegatorFactory::class,
             ],
         ],
     ],
