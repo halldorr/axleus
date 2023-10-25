@@ -122,7 +122,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'forum'    => [__DIR__ . '/../templates/forum'],
+                'forum'    => [__DIR__ . '/../templates/'],
             ],
         ];
     }

@@ -1,6 +1,6 @@
 <?php
 return [
-    'theme_manager' => [
+    \ThemeManager\SettingsProvider::class => [
         'themes' => [
             'default' => [
                 'id' => 1,

@@ -30,6 +30,10 @@ class ConfigProvider
     public function getTemplates(): array
     {
         return [
+            // 'paths' => [
+            //     'app' => [__DIR__ . '/../templates/app/error'],
+            //     'app' => [__DIR__ . '/../templates/app/layout']
+            // ],
             'paths' => [
                 'error'  => [__DIR__ . '/../templates/error'],
                 'layout' => [__DIR__ . '/../templates/layout'],

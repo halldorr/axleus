@@ -139,7 +139,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'user-manager' => [__DIR__ . '/../templates/user-manager'],
+                'user-manager' => [__DIR__ . '/../templates/'],
             ],
         ];
     }
