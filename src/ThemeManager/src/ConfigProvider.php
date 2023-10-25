@@ -15,9 +15,10 @@ class ConfigProvider
 {
     public function __invoke(): array
     {
+        $settingsProvider = new SettingsProvider();
         return [
             'dependencies' => $this->getDependencies(),
-            //'middleware_pipeline' => $this->getPipeConfig(),
+            \Axleus\SettingsProvider::class => $settingsProvider(),
         ];
     }
 
