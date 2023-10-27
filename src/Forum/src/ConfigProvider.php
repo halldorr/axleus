@@ -70,10 +70,12 @@ class ConfigProvider
     {
         return [
             'invokables' => [
+                Storage\Listener\ForumRepositoryListener::class => Storage\Listener\ForumRepositoryListener::class,
             ],
             'factories'  => [
                 Handler\ForumHandler::class       => Handler\ForumHandlerFactory::class,
                 Middleware\ForumMiddleware::class => Middleware\ForumMiddlewareFactory::class,
+                Storage\ForumRepository::class    => Storage\ForumRepositoryFactory::class,
             ],
         ];
     }

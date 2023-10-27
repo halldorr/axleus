@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forum\Middleware;
 
+use Forum\Storage\ForumRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
