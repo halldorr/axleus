@@ -17,7 +17,7 @@ final class UserRepositoryFactory
         /** @psalm-suppress MixedArgument, MixedArrayAccess */
         return new UserRepository(
             new TableGateway(
-                'user',
+                new TableIdentifier('smf_', 'user'),
                 $container->get(AdapterInterface::class)
             ),
             $container->get('config')['authentication']
