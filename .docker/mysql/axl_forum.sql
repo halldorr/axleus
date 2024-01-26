@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 19, 2023 at 04:19 AM
+-- Generation Time: Jan 26, 2024 at 04:12 AM
 -- Server version: 10.10.2-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,20 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thread`
+-- Table structure for table `axl_forum`
 --
 
-DROP TABLE IF EXISTS `thread`;
-CREATE TABLE IF NOT EXISTS `thread` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `forumId` int(10) UNSIGNED NOT NULL COMMENT 'FK to forum table id',
-  `title` varchar(500) NOT NULL,
-  `content` mediumtext DEFAULT NULL,
+DROP TABLE IF EXISTS `axl_forum`;
+CREATE TABLE IF NOT EXISTS `axl_forum` (
+  `forumId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
   `userId` int(10) UNSIGNED NOT NULL COMMENT 'FK to user table id',
-  `created` int(10) UNSIGNED NOT NULL COMMENT 'created timestamp',
-  `updated` int(10) UNSIGNED NOT NULL COMMENT 'updated timestamp',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created` int(10) UNSIGNED NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`forumId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Forum data';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

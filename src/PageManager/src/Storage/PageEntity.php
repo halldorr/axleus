@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PageManager\Storage;
 
-use Webinertia\Db;
+use Axleus\Db;
 use Stdlib\Content\ContentInterface;
 
 class PageEntity implements Db\EntityInterface, ContentInterface

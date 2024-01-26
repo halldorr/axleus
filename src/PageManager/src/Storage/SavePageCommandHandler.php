@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PageManager\Storage;
 
-use Webinertia\Db\EntityInterface;
+use Axleus\Db\EntityInterface;
 
 final class SavePageCommandHandler
 {

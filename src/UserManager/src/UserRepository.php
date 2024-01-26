@@ -9,7 +9,7 @@ use Laminas\Db\Sql\Where;
 use Laminas\Stdlib\ArrayObject;
 use Mezzio\Authentication\UserInterface;
 use Mezzio\Authentication\UserRepositoryInterface;
-use Webinertia\Db\TableGateway;
+use Axleus\Db\TableGateway;
 use Webmozart\Assert\Assert;
 
 use function array_flip;

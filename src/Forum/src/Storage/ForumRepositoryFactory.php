@@ -10,7 +10,7 @@ use Laminas\Db\ResultSet\HydratingResultSet;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Hydrator\ReflectionHydrator;
 use Psr\Container\ContainerInterface;
-use Webinertia\Db\TableGateway;
+use Axleus\Db\TableGateway;
 
 final class ForumRepositoryFactory
 {

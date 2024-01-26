@@ -19,6 +19,11 @@ use Mezzio\Container;
 use Mezzio\Middleware\ErrorResponseGenerator;
 
 return [
+    'settings' => [
+        'db' => [
+            'table_prefix' => 'axl_',
+        ],
+    ],
     'dependencies' => [
         'factories' => [
             \Axleus\DebugBar\DebugBarMiddleware::class       => \Axleus\DebugBar\DebugBarMiddlewareFactory::class,
