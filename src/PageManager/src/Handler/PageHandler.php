@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PageManager\Handler;
 
-use App\Db\DoctrineRepository;
 use Axleus\Boards;
 use DebugBar\DebugBar;
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -20,27 +19,23 @@ use Psr\Http\Server\RequestHandlerInterface;
 class PageHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private ?TemplateRendererInterface $template = null,
-        private ?DoctrineRepository $repo = null,
+        private ?TemplateRendererInterface $template = null
     ) {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $boards = new Boards();
-        $result = $this->repo->select(
-            ['email', 'userName', 'firstName', 'role', 'lastName'],
-            ['email' => 'test@webinertia.net']
-        );
+
         //$page = new PageEntity(null, 'command created');
         //$this->test = $page;
         //$this->commandBus->handle(new Storage\SavePageCommand($page));
 
         // debug message usage
         $debug = $request->getAttribute(DebugBar::class);
-        // $debug['messages']->addMessage(
-
-        // );
+        $debug['messages']->addMessage(
+            'test message'
+        );
        //$this->test = 'test';
         if ($this->template === null) {
             return new JsonResponse([]);

@@ -50,7 +50,6 @@
         "axleus/axleus-pluginmanager": "dev-master",
         "bushbaby/flysystem": "^8.0",
         "composer/package-versions-deprecated": "^1.10.99",
-        "doctrine/dbal": "^3.7",
         "laminas/laminas-component-installer": "^2.6 || ^3.0",
         "laminas/laminas-config-aggregator": "^1.13",
         "laminas/laminas-db": "^2.18",

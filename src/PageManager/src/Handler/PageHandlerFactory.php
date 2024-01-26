@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PageManager\Handler;
 
-use App\Db\DoctrineRepository;
 use League\Tactician\CommandBus;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
@@ -23,8 +22,7 @@ class PageHandlerFactory
         assert($template instanceof TemplateRendererInterface || null === $template);
 
         return new PageHandler(
-            $template,
-            $container->get(DoctrineRepository::class)
+            $template
         );
     }
 }

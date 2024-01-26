@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use Doctrine\DBAL\Query\QueryBuilder;
-
 class ConfigProvider
 {
     /**
@@ -25,14 +23,6 @@ class ConfigProvider
     public function getDependencies(): array
     {
         return [
-            'aliases' => [
-                'TableIdentifierInterface' => Db\TableIdentifier::class,
-            ],
-            'factories' => [
-                Db\DoctrineRepository::class => Db\DoctrineRepositoryFactory::class,
-                Db\TableIdentifier::class => Db\TableIdentifierFactory::class,
-                QueryBuilder::class => Service\DoctrineFactory::class,
-            ],
         ];
     }
 
