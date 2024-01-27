@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-/**
- * The configuration provider for the App module
- *
- * @see https://docs.laminas.dev/laminas-component-installer/
- */
 class ConfigProvider
 {
     /**
@@ -20,7 +15,14 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
+            'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
+        ];
+    }
+
+    public function getDependencies(): array
+    {
+        return [
         ];
     }
 

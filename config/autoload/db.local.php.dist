@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 return [
+    //  for mariaDb connection
     'db' => [
         'driver'   => 'Pdo_MySQL',
         'dsn'      => 'mysql:dbname=your_dbname;host=127.0.0.1;port=3307;charset=utf8',

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forum\Handler;
 
+use Forum\Storage\ForumRepository;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 
@@ -13,6 +14,11 @@ class ForumHandlerFactory
     {
         /** @var TemplateRendererInterface $renderer */
         $renderer = $container->get(TemplateRendererInterface::class);
-        return new ForumHandler($renderer);
+        /** @var ForumRepository $repo */
+        $repo     = $container->get(ForumRepository::class);
+        return new ForumHandler(
+            $renderer,
+            $repo
+        );
     }
 }

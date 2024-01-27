@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Forum;
+namespace PageManager;
 
 use Axleus\SettingsProvider as Provider;
 
 final class SettingsProvider extends Provider
 {
-    public ?string $file = 'forum.php';
+    public ?string $file = 'page-manager.php';
 
     public function __invoke(): array
     {

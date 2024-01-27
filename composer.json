@@ -44,9 +44,16 @@
             ]
         }
     },
+    "repositories": [
+		{
+            "url": "https://github.com/axleus/axleus-db.git",
+            "type": "vcs"
+        }
+    ],
     "require": {
         "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
         "axleus/axleus-core": "dev-master",
+        "axleus/axleus-db": "^1.0",
         "axleus/axleus-pluginmanager": "dev-master",
         "bushbaby/flysystem": "^8.0",
         "composer/package-versions-deprecated": "^1.10.99",
@@ -73,7 +80,6 @@
         "mikemix/tactician-module": "^3.2",
         "monolog/monolog": "^3.4",
         "ramsey/uuid": "^4.7",
-        "webinertia/webinertia-db": "^0.0.7",
         "webinertia/webinertia-filter": "^0.0.5",
         "webinertia/webinertia-utils": "^0.0.10",
         "webinertia/webinertia-validator": "^0.0.4"

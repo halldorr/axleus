@@ -6,8 +6,8 @@ namespace PageManager\Storage;
 
 use Laminas\Db\ResultSet\ResultSetInterface;
 use Laminas\Hydrator\ReflectionHydrator;
-use Webinertia\Db\EntityInterface;
-use Webinertia\Db;
+use Axleus\Db\EntityInterface;
+use Axleus\Db;
 
 class PageRepository implements Db\RepositoryInterface, Db\RepositoryCommandInterface
 {

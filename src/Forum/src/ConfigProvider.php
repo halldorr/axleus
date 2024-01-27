@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forum;
 
+use Axleus\SettingsProviderTrait;
 use League\Tactician;
 use Mezzio\Application;
 use Mezzio\Container\ApplicationConfigInjectionDelegator;
@@ -15,8 +16,6 @@ use Mezzio\Container\ApplicationConfigInjectionDelegator;
  */
 class ConfigProvider
 {
-    private const SETTINGS_PATH = __DIR__ . '/../../../data/settings/forum.php';
-    /** @var array<array-key, mixed> $settings */
     private array $settings;
     private bool $routeFlag;
     private string $uriSegment;
@@ -28,8 +27,7 @@ class ConfigProvider
          * @psalm-suppress UnresolvableInclude
          * @psalm-suppress MixedAssignment
          * */
-        $this->settings = (require self::SETTINGS_PATH)[\Axleus\SettingsProvider::class][\Forum\SettingsProvider::class];
-
+        $this->settings = (new SettingsProvider)();
         /**
          * @psalm-suppress MixedAssignment
          * @psalm-suppress MixedArrayAccess
@@ -53,13 +51,12 @@ class ConfigProvider
      */
     public function __invoke() : array
     {
-        $settingsProvider = new SettingsProvider();
         return [
             'dependencies'        => $this->getDependencies(),
             'templates'           => $this->getTemplates(),
             'routes'              => $this->getRoutes(),
             'middleware_pipeline' => $this->getPipelineConfig(),
-            \Axleus\SettingsProvider::class => $settingsProvider(),
+            SettingsProvider::class => $this->settings,
         ];
     }
 
@@ -70,10 +67,12 @@ class ConfigProvider
     {
         return [
             'invokables' => [
+                Storage\Listener\ForumRepositoryListener::class => Storage\Listener\ForumRepositoryListener::class,
             ],
             'factories'  => [
                 Handler\ForumHandler::class       => Handler\ForumHandlerFactory::class,
                 Middleware\ForumMiddleware::class => Middleware\ForumMiddlewareFactory::class,
+                Storage\ForumRepository::class    => Storage\ForumRepositoryFactory::class,
             ],
         ];
     }

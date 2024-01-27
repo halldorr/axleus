@@ -11,10 +11,10 @@ namespace PageManager;
  */
 class ConfigProvider
 {
-    private const SETTINGS_PATH = __DIR__ . '/../../../data/settings/forum.php';
-
     private array $settings;
     private bool $routeFlag;
+
+    protected ?string $file = 'page-manager';
 
     public function __construct()
     {
@@ -22,7 +22,7 @@ class ConfigProvider
          * @psalm-suppress UnresolvableInclude
          * @psalm-suppress MixedAssignment
          * */
-        $this->settings = (require self::SETTINGS_PATH)[\Axleus\SettingsProvider::class][\Forum\SettingsProvider::class];
+        $this->settings = (new SettingsProvider)();
 
         /**
          * @psalm-suppress MixedAssignment
@@ -44,6 +44,7 @@ class ConfigProvider
             'templates'    => $this->getTemplates(),
             'routes'       => $this->getRoutes(),
             'tactician'    => $this->getTacticianConfig(),
+            SettingsProvider::class => $this->settings,
         ];
     }
 
