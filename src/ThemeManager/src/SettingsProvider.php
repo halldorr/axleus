@@ -4,28 +4,18 @@ declare(strict_types=1);
 
 namespace ThemeManager;
 
-final class SettingsProvider
+use Axleus\SettingsProvider as Provider;
+
+final class SettingsProvider extends Provider
 {
-    public const DEFAULT_THEME = 'default';
-    private const SETTINGS_FILE = __DIR__ . '/../../../data/settings/themes.php';
+    public const DEFAULT_THEME  = 'default';
+    protected ?string $file     = 'themes.php';
     private string $activeTheme = self::DEFAULT_THEME;
     private $settings;
 
-    public function __construct()
-    {
-        $settings = require self::SETTINGS_FILE;
-        if (! \is_bool($settings) && is_array($settings[static::class])) {
-            $this->settings = $settings[static::class]['themes'];
-        }
-    }
-
     public function __invoke(): array
     {
-        return [
-            static::class => [
-
-            ],
-        ];
+        return parent::__invoke();
     }
 
     public function getActiveTheme(): string

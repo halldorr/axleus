@@ -22,7 +22,7 @@ class ConfigProvider
          * @psalm-suppress UnresolvableInclude
          * @psalm-suppress MixedAssignment
          * */
-        $this->settings = (new SettingsProvider)()[SettingsProvider::class];
+        $this->settings = (new SettingsProvider)();
 
         /**
          * @psalm-suppress MixedAssignment
@@ -44,6 +44,7 @@ class ConfigProvider
             'templates'    => $this->getTemplates(),
             'routes'       => $this->getRoutes(),
             'tactician'    => $this->getTacticianConfig(),
+            SettingsProvider::class => $this->settings,
         ];
     }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Forum;
 
-use Laminas\ConfigAggregator\ArrayProvider;
+use Axleus\SettingsProviderTrait;
 use League\Tactician;
 use Mezzio\Application;
 use Mezzio\Container\ApplicationConfigInjectionDelegator;
@@ -27,7 +27,7 @@ class ConfigProvider
          * @psalm-suppress UnresolvableInclude
          * @psalm-suppress MixedAssignment
          * */
-        $this->settings = (new SettingsProvider)()[SettingsProvider::class];
+        $this->settings = (new SettingsProvider)();
         /**
          * @psalm-suppress MixedAssignment
          * @psalm-suppress MixedArrayAccess
@@ -56,7 +56,7 @@ class ConfigProvider
             'templates'           => $this->getTemplates(),
             'routes'              => $this->getRoutes(),
             'middleware_pipeline' => $this->getPipelineConfig(),
-            \Axleus\SettingsProvider::class => [SettingsProvider::class => $this->settings],
+            SettingsProvider::class => $this->settings,
         ];
     }
 
