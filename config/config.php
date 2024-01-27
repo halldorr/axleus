@@ -14,12 +14,12 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Axleus\Log\ConfigProvider::class,
     \Axleus\Db\ConfigProvider::class,
     \Webinertia\Validator\ConfigProvider::class,
     \Webinertia\Filter\ConfigProvider::class,
     \Laminas\I18n\ConfigProvider::class,
     \BsbFlysystem\ConfigProvider::class,
-    \Log\ConfigProvider::class,
     \TacticianModule\ConfigProvider::class,
     \Laminas\Form\ConfigProvider::class,
     \Laminas\InputFilter\ConfigProvider::class,
