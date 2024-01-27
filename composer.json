@@ -44,16 +44,9 @@
             ]
         }
     },
-    "repositories": [
-		{
-            "url": "https://github.com/axleus/axleus-db.git",
-            "type": "vcs"
-        }
-    ],
     "require": {
         "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
         "axleus/axleus-core": "dev-master",
-        "axleus/axleus-db": "^1.0",
         "axleus/axleus-pluginmanager": "dev-master",
         "bushbaby/flysystem": "^8.0",
         "composer/package-versions-deprecated": "^1.10.99",
@@ -101,7 +94,6 @@
             "ThemeManager\\": "src/ThemeManager/src/",
             "PageManager\\": "src/PageManager/src/",
             "UserManager\\": "src/UserManager/src/",
-            "Log\\": "src/Log/src/",
             "Forum\\": "src/Forum/src/",
             "Plugin\\": "plugin/src"
         }

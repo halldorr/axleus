@@ -20,8 +20,9 @@ final class UserRepositoryFactory
         return new UserRepository(
             new TableGateway(
                 new TableIdentifier(
+                    'user',
                     $db_settings['table_prefix'],
-                    'user'),
+                ),
                 $container->get(AdapterInterface::class)
             ),
             $container->get('config')['authentication']

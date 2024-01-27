@@ -22,7 +22,8 @@ class PageHandlerFactory
         assert($template instanceof TemplateRendererInterface || null === $template);
 
         return new PageHandler(
-            $template
+            $template,
+            $container->get(CommandBus::class)
         );
     }
 }

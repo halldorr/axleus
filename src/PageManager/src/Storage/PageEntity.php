@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PageManager\Storage;
 
 use Axleus\Db;
-use Stdlib\Content\ContentInterface;
+use Axleus\Stdlib\Content\ContentInterface;
 
 class PageEntity implements Db\EntityInterface, ContentInterface
 {

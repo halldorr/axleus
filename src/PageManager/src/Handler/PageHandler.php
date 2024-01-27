@@ -19,7 +19,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 class PageHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private ?TemplateRendererInterface $template = null
+        private ?TemplateRendererInterface $template = null,
+        private $commandBus
     ) {
     }
 
@@ -27,9 +28,9 @@ class PageHandler implements RequestHandlerInterface
     {
         $boards = new Boards();
 
-        //$page = new PageEntity(null, 'command created');
+        $page = new PageEntity(null, 'command created');
         //$this->test = $page;
-        //$this->commandBus->handle(new Storage\SavePageCommand($page));
+        $this->commandBus->handle(new Storage\SavePageCommand($page));
 
         // debug message usage
         $debug = $request->getAttribute(DebugBar::class);
