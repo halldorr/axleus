@@ -28,9 +28,8 @@ class PageHandler implements RequestHandlerInterface
     {
         $boards = new Boards();
 
-        $page = new PageEntity(null, 'command created');
-        //$this->test = $page;
-        $this->commandBus->handle(new Storage\SavePageCommand($page));
+        //$page = new PageEntity(null, 'command created');
+        //$this->commandBus->handle(new Storage\SavePageCommand($page));
 
         // debug message usage
         $debug = $request->getAttribute(DebugBar::class);

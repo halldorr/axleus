@@ -31,8 +31,23 @@ final class RendererFactory
     {
         /** @var array<string, string[]> */
         $config = $container->has('config') ? $container->get('config') : [];
-        $themeProvider = new SettingsProvider();
-        $activeTheme   = $themeProvider->getActiveTheme();
+        $themeData = $config[SettingsProvider::class]['themes'];
+
+        $activeTheme = null;
+
+        if (is_array($themeData)) {
+            foreach ($themeData as $theme) {
+                if (! $theme['active']) {
+                    continue;
+                }
+                $activeTheme = $theme['name'];
+            }
+        }
+
+        if ($activeTheme === null) {
+            $activeTheme = SettingsProvider::DEFAULT_THEME;
+        }
+
         /** @var array<string, string[]> */
         $config = $config['templates'] ?? [];
 
