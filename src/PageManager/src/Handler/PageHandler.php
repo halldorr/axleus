@@ -34,9 +34,9 @@ class PageHandler implements RequestHandlerInterface
         // debug message usage
         $debug = $request->getAttribute(DebugBar::class);
         $debug['messages']->addMessage(
-            ($request->getAttribute('translator'))->translate('forbidden_403', 'default', 'en_US')
+            ($request->getAttribute('translator'))->translate('forbidden_403')
         );
-       //$this->test = 'test';
+        //$this->test = 'test';
         if ($this->template === null) {
             return new JsonResponse([]);
         }
