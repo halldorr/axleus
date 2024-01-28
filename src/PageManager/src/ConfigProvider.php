@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PageManager;
 
+use Axleus\TranslatorConfigProviderTrait;
+
 /**
  * The configuration provider for the PageManager module
  *
@@ -11,6 +13,8 @@ namespace PageManager;
  */
 class ConfigProvider
 {
+    use TranslatorConfigProviderTrait;
+
     private array $settings;
     private bool $routeFlag;
 
@@ -44,6 +48,7 @@ class ConfigProvider
             'templates'    => $this->getTemplates(),
             'routes'       => $this->getRoutes(),
             'tactician'    => $this->getTacticianConfig(),
+            'translator'   => $this->getTranslatorConfig(),
             SettingsProvider::class => $this->settings,
         ];
     }

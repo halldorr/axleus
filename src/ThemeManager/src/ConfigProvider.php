@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ThemeManager;
 
+use Axleus\TranslatorConfigProviderTrait;
 use Mezzio\LaminasView\LaminasViewRenderer;
 
 /**
@@ -13,10 +14,13 @@ use Mezzio\LaminasView\LaminasViewRenderer;
  */
 class ConfigProvider
 {
+    use TranslatorConfigProviderTrait;
+
     public function __invoke(): array
     {
         return [
             'dependencies' => $this->getDependencies(),
+            'translator'   => $this->getTranslatorConfig(),
             SettingsProvider::class => (new SettingsProvider)(),
         ];
     }

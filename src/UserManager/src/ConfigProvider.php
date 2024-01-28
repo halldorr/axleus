@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace UserManager;
 
 use Axleus\Constants;
+use Axleus\TranslatorConfigProviderTrait;
 use Mezzio\Authentication\AuthenticationInterface;
 use Mezzio\Authentication\AuthenticationMiddleware;
 use Mezzio\Authentication\Session\PhpSession;
@@ -19,6 +20,8 @@ use UserManager\Form;
  */
 class ConfigProvider
 {
+    use TranslatorConfigProviderTrait;
+
     /**
      * Returns the configuration array
      *
@@ -35,6 +38,7 @@ class ConfigProvider
             'routes'              => $this->getRoutes(),
             'form_elements'       => $this->getFormElementConfig(),
             'tactician'           => $this->getCommandConfig(),
+            'translator'          => $this->getTranslatorConfig(),
         ];
     }
 

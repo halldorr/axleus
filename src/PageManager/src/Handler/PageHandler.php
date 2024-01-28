@@ -20,7 +20,7 @@ class PageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template = null,
-        private $commandBus
+        private $commandBus = null
     ) {
     }
 
@@ -34,7 +34,7 @@ class PageHandler implements RequestHandlerInterface
         // debug message usage
         $debug = $request->getAttribute(DebugBar::class);
         $debug['messages']->addMessage(
-            'test message'
+            ($request->getAttribute('translator'))->translate('forbidden_403', 'default', 'en_US')
         );
        //$this->test = 'test';
         if ($this->template === null) {

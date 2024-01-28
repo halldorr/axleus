@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App;
 
+use Axleus\TranslatorConfigProviderTrait;
+
 class ConfigProvider
 {
+    use TranslatorConfigProviderTrait;
+
     /**
      * Returns the configuration array
      *
@@ -17,6 +21,7 @@ class ConfigProvider
         return [
             'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
+            'translator'   => $this->getTranslatorConfig(),
         ];
     }
 
