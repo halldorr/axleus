@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5badd8301df9ed36b04e9e8468d71dca",
+    "content-hash": "e7d9e13aa2d7886f6a4256c738dd6ec3",
     "packages": [
         {
             "name": "axleus/axleus-core",
@@ -2089,60 +2089,6 @@
             "time": "2024-01-25T11:26:39+00:00"
         },
         {
-            "name": "league/event",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/event.git",
-                "reference": "d2cc124cf9a3fab2bb4ff963307f60361ce4d119"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/event/zipball/d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
-                "reference": "d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "henrikbjorn/phpspec-code-coverage": "~1.0.1",
-                "phpspec/phpspec": "^2.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Event\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Frank de Jonge",
-                    "email": "info@frenky.net"
-                }
-            ],
-            "description": "Event package",
-            "keywords": [
-                "emitter",
-                "event",
-                "listener"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/event/issues",
-                "source": "https://github.com/thephpleague/event/tree/master"
-            },
-            "time": "2018-11-26T11:52:41+00:00"
-        },
-        {
             "name": "league/flysystem",
             "version": "3.23.1",
             "source": {
@@ -2402,62 +2348,6 @@
                 "source": "https://github.com/thephpleague/tactician/tree/v1.1.0"
             },
             "time": "2021-02-14T15:29:04+00:00"
-        },
-        {
-            "name": "league/tactician-command-events",
-            "version": "v0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/tactician-command-events.git",
-                "reference": "dff9a4ef0120b837a6ba38b689102ca651c7f231"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/tactician-command-events/zipball/dff9a4ef0120b837a6ba38b689102ca651c7f231",
-                "reference": "dff9a4ef0120b837a6ba38b689102ca651c7f231",
-                "shasum": ""
-            },
-            "require": {
-                "league/event": "~2.1",
-                "league/tactician": "^1.0"
-            },
-            "require-dev": {
-                "henrikbjorn/phpspec-code-coverage": "~1.0",
-                "phpspec/phpspec": "~2.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Tactician\\CommandEvents\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com"
-                }
-            ],
-            "description": "Tactician Command Events",
-            "homepage": "http://tactician.thephpleague.com",
-            "keywords": [
-                "event",
-                "tactician"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/tactician-command-events/issues",
-                "source": "https://github.com/thephpleague/tactician-command-events/tree/master"
-            },
-            "abandoned": true,
-            "time": "2015-12-31T13:38:20+00:00"
         },
         {
             "name": "mezzio/mezzio",

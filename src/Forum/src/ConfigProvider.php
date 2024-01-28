@@ -94,7 +94,6 @@ class ConfigProvider
      * */
     public function getRoutes(): array
     {
-
         $routes = [
             [
                 'path'            => $this->route . '/{forumName}',

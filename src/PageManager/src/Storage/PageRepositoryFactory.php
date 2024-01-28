@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace PageManager\Storage;
 
+use Axleus\Db;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Db\Adapter\AdapterInterface;
 use Laminas\Db\ResultSet\HydratingResultSet;
 use Laminas\Hydrator\ReflectionHydrator;
+use PageManager\SettingsProvider;
 use Psr\Container\ContainerInterface;
-use Axleus\Db\TableGateway;
-use Axleus\Db\TableIdentifier;
 
 final class PageRepositoryFactory
 {
     public function __invoke(ContainerInterface $container): PageRepository
     {
-        $db_settings = $container->get('config')['settings']['db'];
+        $config = $container->get('config');
         /** @var Adapter */
         $adapter = $container->get(AdapterInterface::class);
         return new PageRepository(
-            new TableGateway(
-                new TableIdentifier(
-                    'page',
-                    $db_settings['table_prefix'],
+            new Db\TableGateway(
+                new Db\TableIdentifier(
+                    $config[SettingsProvider::class]['table'],
+                    $config[Db\SettingsProvider::class]['table_prefix'],
                 ),
                 $adapter,
                 null,

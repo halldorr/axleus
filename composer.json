@@ -59,7 +59,6 @@
         "laminas/laminas-i18n": "^2.23",
         "laminas/laminas-servicemanager": "^3.4",
         "laminas/laminas-stdlib": "^3.6",
-        "league/tactician-command-events": "^0.6.0",
         "mezzio/mezzio": "3.17.0",
         "mezzio/mezzio-authentication": "^1.8",
         "mezzio/mezzio-authentication-session": "^1.8",

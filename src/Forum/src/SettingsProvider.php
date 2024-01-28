@@ -8,7 +8,8 @@ use Axleus\SettingsProvider as Provider;
 
 final class SettingsProvider extends Provider
 {
-    public ?string $file = 'forum.php';
+    public const SETTINGS_FILE = 'forum.php';
+    protected ?string $file = self::SETTINGS_FILE;
 
     public function __invoke(): array
     {

@@ -6,6 +6,8 @@
 !settings
 !settings/.gitkeep
 !settings/acl.php
+!settings/db.php
+!settings/log.php
 !settings/forum.php
 !settings/themes.php
 !settings/page-manager.php
