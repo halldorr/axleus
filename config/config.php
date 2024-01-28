@@ -14,6 +14,8 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+
+    \Laminas\Navigation\ConfigProvider::class,
     \Axleus\Db\ConfigProvider::class,
     \Axleus\Log\ConfigProvider::class,
     \Webinertia\Validator\ConfigProvider::class,
@@ -41,6 +43,7 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Helper\ConfigProvider::class,
     \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
+    \Limatus\ConfigProvider::class,
     // application level packages
     \Forum\ConfigProvider::class,
     \PageManager\ConfigProvider::class,
