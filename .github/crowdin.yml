@@ -8,6 +8,6 @@ files: [
     {
       source: '/src/**/language/en_US.php',
       #dest: '/**/language/en_US.php',
-      translation: '%original_path%/%locale%.php',
+      translation: '%original_path%/%locale_with_underscore%.php',
     },
   ]
