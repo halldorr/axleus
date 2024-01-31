@@ -19,11 +19,6 @@ use Mezzio\Container;
 use Mezzio\Middleware\ErrorResponseGenerator;
 
 return [
-    'settings' => [
-        'db' => [
-            'table_prefix' => 'axl_',
-        ],
-    ],
     'dependencies' => [
         'factories' => [
             \Axleus\DebugBar\DebugBarMiddleware::class       => \Axleus\DebugBar\DebugBarMiddlewareFactory::class,
@@ -64,10 +59,10 @@ return [
     ],
     'phpmiddleware' => [
         'phpdebugbar' => [
-            'javascript_renderer' => [
-                'base_url' => '/phpdebugbar',
-                'ajax_handler_bind_to_jquery' => true,
-                'include_vendors' => 'css',
+                'javascript_renderer' => [
+                    'base_url' => '/themes/default/debugbar',
+                    'ajax_handler_bind_to_jquery' => true,
+                    'include_vendors' => 'css',
             ],
             'collectors' => [
                 \DebugBar\DataCollector\ConfigCollector::class,
