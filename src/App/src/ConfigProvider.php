@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
-use Axleus\TranslatorConfigProviderInterface;
 use Laminas\I18n\Translator\Loader\PhpArray;
 
-class ConfigProvider implements TranslatorConfigProviderInterface
+class ConfigProvider
 {
     /**
      * Returns the configuration array

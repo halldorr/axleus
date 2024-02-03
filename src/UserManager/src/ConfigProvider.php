@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace UserManager;
 
 use Axleus\Constants;
-use Axleus\TranslatorConfigProviderInterface;
 use Laminas\I18n\Translator\Loader\PhpArray;
 use Mezzio\Authentication\AuthenticationInterface;
 use Mezzio\Authentication\AuthenticationMiddleware;
@@ -19,7 +18,7 @@ use UserManager\Form;
  *
  * @see https://docs.laminas.dev/laminas-component-installer/
  */
-class ConfigProvider implements TranslatorConfigProviderInterface
+class ConfigProvider
 {
     public string $baseDir = __DIR__ . '/../language';
 

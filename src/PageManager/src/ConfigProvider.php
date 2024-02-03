@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PageManager;
 
-use Axleus\TranslatorConfigProviderInterface;
 use Laminas\I18n\Translator\Loader\PhpArray;
 
 /**
@@ -12,7 +11,7 @@ use Laminas\I18n\Translator\Loader\PhpArray;
  *
  * @see https://docs.laminas.dev/laminas-component-installer/
  */
-class ConfigProvider implements TranslatorConfigProviderInterface
+class ConfigProvider
 {
     private array $settings;
     private bool $routeFlag;

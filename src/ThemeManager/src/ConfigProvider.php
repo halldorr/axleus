@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ThemeManager;
 
-use Axleus\TranslatorConfigProviderInterface;
 use Laminas\I18n\Translator\Loader\PhpArray;
 use Mezzio\LaminasView\LaminasViewRenderer;
 
@@ -13,7 +12,7 @@ use Mezzio\LaminasView\LaminasViewRenderer;
  *
  * @see https://docs.laminas.dev/laminas-component-installer/
  */
-class ConfigProvider implements TranslatorConfigProviderInterface
+class ConfigProvider
 {
     public function __invoke(): array
     {

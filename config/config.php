@@ -14,9 +14,7 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
-
     \Laminas\Navigation\ConfigProvider::class,
-    \Axleus\Db\ConfigProvider::class,
     \Axleus\Log\ConfigProvider::class,
     \Webinertia\Validator\ConfigProvider::class,
     \Webinertia\Filter\ConfigProvider::class,
@@ -37,6 +35,8 @@ $aggregator = new ConfigAggregator([
     \Webinertia\Utils\ConfigProvider::class,
     \Laminas\Hydrator\ConfigProvider::class,
     \Laminas\Db\ConfigProvider::class,
+    \Axleus\Db\ConfigProvider::class,
+    \BjyProfiler\ConfigProvider::class,
     //\PhpMiddleware\PhpDebugBar\ConfigProvider::class,
     \Mezzio\LaminasView\ConfigProvider::class,
     \Mezzio\Tooling\ConfigProvider::class,
