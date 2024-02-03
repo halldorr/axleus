@@ -96,7 +96,7 @@ class ConfigProvider
     {
         $routes = [
             [
-                'path'            => $this->route . '/{forumName}',
+                'path'            => $this->route . '[/{forumName}]',
                 'name'            => 'forum',
                 'middleware'      => Handler\ForumHandler::class,
                 'allowed_methods' => ['GET'],

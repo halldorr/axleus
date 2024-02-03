@@ -6,6 +6,8 @@ namespace PageManager;
 
 use Laminas\I18n\Translator\Loader\PhpArray;
 
+use function class_exists;
+
 /**
  * The configuration provider for the PageManager module
  *
@@ -25,6 +27,12 @@ class ConfigProvider
          * @psalm-suppress MixedAssignment
          * */
         $this->settings = (new SettingsProvider)();
+
+        if (class_exists(\Forum\SettingsProvider::class, false)) {
+            // if the forum module is installed, respect its settings
+            $forumSettings = include SettingsProvider::SETTINGS_PATH . \Forum\SettingsProvider::SETTINGS_FILE;
+            $this->settings += $forumSettings;
+        }
 
         /**
          * @psalm-suppress MixedAssignment

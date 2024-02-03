@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'board_table' => 'board',
     'forum_table' => 'forum',

@@ -28,7 +28,7 @@ class ForumHandler implements RequestHandlerInterface
         return new HtmlResponse($this->renderer->render(
             'forum::forum',
             [
-                'forums' => $this->forumRepository->fetchAll()
+                //'forums' => $this->forumRepository->fetchAll()
             ] // parameters to pass to template
         ));
     }

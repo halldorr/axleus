@@ -13,6 +13,7 @@ final class SettingsProvider extends Provider
 
     public function __invoke(): array
     {
-        return parent::__invoke();
+        $settings = parent::__invoke();
+        return $settings;
     }
 }
