@@ -76,7 +76,7 @@ $aggregator = new ConfigAggregator([
      * loading in this order allows for any development mode settings to override them
      * without having to change the base values
      */
-    new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/settings/{,*}.php'),
+    //new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/settings/{,*}.php'),
     new PhpFileProvider(realpath(__DIR__ . '/../') . '/plugin/src/*/config/{,*}.php'),
     new PhpFileProvider(realpath(__DIR__) . '/autoload/{{,*.}global,{,*.}local}.php'),
     // Load development config if it exists
