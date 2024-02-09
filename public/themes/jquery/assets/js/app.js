@@ -1,5 +1,8 @@
 ((JQuery) => {
     'use strict'
+    $.ajaxSetup({
+        async:true,
+    });
     $('.navbar-nav li a').on('click', (event) => {
         event.preventDefault();
         let href = event.target.href;

@@ -22,23 +22,12 @@ $this->headLink()
     ->appendStylesheet('https://use.fontawesome.com/releases/v5.13.0/css/all.css')
     ->appendStylesheet('/themes/default/assets/css/style.css');
 
-// if ($this->debug) {
-//     $this->headLink()->appendStylesheet('/themes/default/debugbar/debugbar.css')
-//         ->appendStylesheet('/themes/default/debugbar/widgets.css')
-//         ->appendStylesheet('/themes/default/debugbar/openhandler.css');
-// }
-
 $this->inlineScript()
-    ->appendFile('https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.js')
-    ->appendFile('/themes/default/assets/js/bootstrap.min.js')
-    ->appendFile('/themes/jquery/assets/js/app.js');
-
-// if ($this->debug) {
-//     $this->inlineScript()
-//         ->appendFile('/themes/default/debugbar/debugbar.js')
-//         ->appendFile('/themes/default/debugbar/widgets.js')
-//         ->appendFile('/themes/default/debugbar/openhandler.js');
-// }
+    //->appendFile('https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.js')
+    //->appendFile('/themes/default/assets/js/jquery.min.js')
+    ->appendFile('/themes/default/assets/js/bootstrap.js')
+    //->appendFile('/themes/jquery/assets/js/app.js')
+    ;
 
 ?>
 <!DOCTYPE html>

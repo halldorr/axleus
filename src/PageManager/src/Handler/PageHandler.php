@@ -31,10 +31,10 @@ class PageHandler implements RequestHandlerInterface
         $this->commandBus->handle(new Storage\SavePageCommand($page));
 
         // debug message usage
-        $debug = $request->getAttribute(DebugBar::class);
-        $debug['messages']->addMessage(
-            ($request->getAttribute('translator'))->translate('forbidden_403')
-        );
+        // $debug = $request->getAttribute(DebugBar::class);
+        // $debug['messages']->addMessage(
+        //     ($request->getAttribute('translator'))->translate('forbidden_403')
+        // );
 
         if ($this->template === null) {
             return new JsonResponse([]);

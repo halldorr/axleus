@@ -37,6 +37,7 @@ class LoginHandler implements MiddlewareInterface
         $redirect = $this->getRedirect($request, $session);
         // Handle submitted credentials
         if ('POST' === $request->getMethod()) {
+
             if ($this->commandBus->handle(new LoginCommand($request, $session))) {
                 return new RedirectResponse($redirect);
             } else {

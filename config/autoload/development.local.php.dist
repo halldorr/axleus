@@ -21,17 +21,9 @@ use Mezzio\Middleware\ErrorResponseGenerator;
 return [
     'dependencies' => [
         'factories' => [
-            \Axleus\DebugBar\DebugBarMiddleware::class       => \Axleus\DebugBar\DebugBarMiddlewareFactory::class,
-            \Axleus\DebugBar\Collector\LaminasDbCollector::class => \Axleus\DebugBar\Collector\LaminasDbCollectorFactory::class,
-            \Axleus\DebugBar\Collector\MezzioRouteCollector::class => \Axleus\DebugBar\Collector\MezzioRouteCollectorFactory::class,
-            \DebugBar\Bridge\MonologCollector::class         => \Axleus\DebugBar\MonologCollectorFactory::class,
-            \DebugBar\DataCollector\ConfigCollector::class   => \Axleus\DebugBar\ConfigCollectorFactory::class,
-            \DebugBar\DebugBar::class                        => \Axleus\DebugBar\StandardDebugBarFactory::class,
-            \DebugBar\JavascriptRenderer::class              => \Axleus\DebugBar\JavascriptRendererFactory::class,
             ErrorResponseGenerator::class                    => Container\WhoopsErrorResponseGeneratorFactory::class,
             'Mezzio\Whoops'                                  => Container\WhoopsFactory::class,
             'Mezzio\WhoopsPageHandler'                       => Container\WhoopsPageHandlerFactory::class, // Axleus implementation
-            \Axleus\DebugBar\PhpDebugBarMiddleware::class    => \Axleus\DebugBar\PhpDebugBarMiddlewareFactory::class,
         ],
         'delegators' => [
             'Mezzio\WhoopsPageHandler' => [
@@ -46,30 +38,5 @@ return [
             'show_trace' => true,
             'ajax_only'  => true,
         ],
-    ],
-    'middleware_pipeline' => [
-        [
-            'middleware' => [
-                \Axleus\DebugBar\PhpDebugBarMiddleware::class,
-                \Axleus\DebugBar\DebugBarMiddleware::class,
-            ],
-            'priority' => Constants::PIPE_PRIORITIES[\Axleus\DebugBar\PhpDebugBarMiddleware::class],
-        ],
-    ],
-    'debugbar' => [
-        'javascript_renderer' => [
-            'base_url' => '/themes/default/debugbar',
-            'base_path' => __DIR__ . '/../../vendor/axleus/axleus-core/src/DebugBar/Resources',
-            'ajax_handler_bind_to_jquery' => true,
-            'include_vendors' => true,
-            'enable_jquery_noconflict' => true,
-        ],
-        'collectors' => [
-            \Axleus\DebugBar\Collector\LaminasDbCollector::class,
-            \Axleus\DebugBar\Collector\MezzioRouteCollector::class,
-            \DebugBar\DataCollector\ConfigCollector::class,
-            \DebugBar\Bridge\MonologCollector::class,
-        ],
-        'storage' => null,
     ],
 ];

@@ -1,3 +1,4 @@
 local.php
 *.local.php
+!db.local.php.dist
 !development.local.php.dist

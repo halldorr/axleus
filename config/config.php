@@ -14,6 +14,7 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Axleus\DevTools\ConfigProvider::class,
     \Laminas\Navigation\ConfigProvider::class,
     \Axleus\Log\ConfigProvider::class,
     \Webinertia\Validator\ConfigProvider::class,
@@ -37,7 +38,6 @@ $aggregator = new ConfigAggregator([
     \Laminas\Db\ConfigProvider::class,
     \Axleus\Db\ConfigProvider::class,
     \BjyProfiler\ConfigProvider::class,
-    //\PhpMiddleware\PhpDebugBar\ConfigProvider::class,
     \Mezzio\LaminasView\ConfigProvider::class,
     \Mezzio\Tooling\ConfigProvider::class,
     \Mezzio\Helper\ConfigProvider::class,
@@ -65,6 +65,7 @@ $aggregator = new ConfigAggregator([
     App\ConfigProvider::class,
     \Axleus\ConfigProvider::class,
     \Axleus\PluginManager\ConfigProvider::class,
+
     // Load application config in a pre-defined order in such a way that local settings
     // overwrite global settings. (Loaded as first to last):
     //   - `global.php`

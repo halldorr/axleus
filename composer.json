@@ -45,7 +45,7 @@
         }
     },
     "require": {
-        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+        "php": "~8.2.0",
         "axleus/axleus-core": "^1.0",
         "axleus/axleus-pluginmanager": "dev-master",
         "bushbaby/flysystem": "^8.0",
@@ -78,16 +78,15 @@
         "webinertia/webinertia-validator": "^0.0.4"
     },
     "require-dev": {
+        "axleus/axleus-dev-tools": "1.0.x-dev",
         "filp/whoops": "^2.7.1",
         "laminas/laminas-coding-standard": "^2.5",
         "laminas/laminas-development-mode": "^3.3.0",
-        "maximebf/debugbar": "^1.19",
         "mezzio/mezzio-tooling": "^2.8",
         "phpunit/phpunit": "^10.2",
         "psalm/plugin-phpunit": "^0.18.4",
         "roave/security-advisories": "dev-master",
-        "vimeo/psalm": "^5.14",
-        "webinertia/bjy-profiler": "^0.0.11"
+        "vimeo/psalm": "^5.14"
     },
     "autoload": {
         "psr-4": {

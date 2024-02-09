@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace UserManager\Auth;
 
-use Axleus\CommandBus\CommandInterface;
+use Axleus\CommandBus\Exception\CommandFailedException;
+use Exception;
 use Mezzio\Authentication\AuthenticationInterface;
 use Mezzio\Authentication\UserInterface;
 
@@ -21,6 +22,10 @@ final class LoginCommandHandler
         // the auth adapter so we remove the session prior
         // to auth attempt
         $command->session->unset(UserInterface::class);
-        return $this->auth->authenticate($command->request);
+        $result = $this->auth->authenticate($command->request);
+        if (! $result instanceof UserInterface) {
+            throw new CommandFailedException('command_login_failed');
+        }
+        return $result;
     }
 }
