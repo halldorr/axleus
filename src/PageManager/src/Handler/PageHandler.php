@@ -30,6 +30,9 @@ class PageHandler implements RequestHandlerInterface
         $page = new PageEntity(null, 'Test Page', 'This is testing the query profiler');
         $this->commandBus->handle(new Storage\SavePageCommand($page));
 
+        $page2 = new PageEntity(null, 'Secondary Page', 'Just adding another query to test the panel');
+        $this->commandBus->handle(new Storage\SavePageCommand($page2));
+
         // debug message usage
         // $debug = $request->getAttribute(DebugBar::class);
         // $debug['messages']->addMessage(
