@@ -6,5 +6,13 @@ return [
     'thread_table' => 'thread',
     'thread_reply_table' => 'thread_reply',
     'serve-forum-from-root' => false,
-    'base-uri-segment'      => 'community' // if serve-forum-from-root is false, then this sets the segment to route the forum
+    'base-uri-segment'      => 'forum', // if serve-forum-from-root is false, then this sets the segment to route the forum
+    'mezzio-authorization-acl' => [
+        'roles' => [
+            'moderator' => ['member'],
+        ],
+        'resources' => [],
+        'allow' => [],
+        'deny'  => [],
+    ],
 ];
