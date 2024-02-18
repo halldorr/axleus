@@ -35,7 +35,7 @@ class PageHandler implements RequestHandlerInterface
         $page2 = new PageEntity(null, 'Secondary Page', 'Just adding another query to test the panel');
         $this->commandBus->handle(new Storage\SavePageCommand($page2));
 
-        $entity = $this->repo?->findByParentId(1);
+        $entities = ($this->repo?->findAllByTitle('Test Page'));
 
         // debug message usage
         // $debug = $request->getAttribute(DebugBar::class);
