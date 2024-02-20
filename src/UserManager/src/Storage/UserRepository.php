@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace UserManager;
+namespace UserManager\Storage;
 
+use Axleus\Db\TableGateway;
 use Laminas\Db\ResultSet\ResultSet;
 use Laminas\Db\Sql\Where;
 use Laminas\Stdlib\ArrayObject;
 use Mezzio\Authentication\UserInterface;
 use Mezzio\Authentication\UserRepositoryInterface;
-use Axleus\Db\TableGateway;
+use UserManager\Auth;
 use Webmozart\Assert\Assert;
 
 use function array_flip;

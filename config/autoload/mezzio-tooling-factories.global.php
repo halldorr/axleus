@@ -7,8 +7,13 @@
  * removing factory definitions; other dependency types may be overwritten
  * when regenerating this file via mezzio-tooling commands.
  */
-
+ 
 declare(strict_types=1);
 
 return [
+    'dependencies' => [
+        'factories' => [
+            PageManager\AdminMiddleware\CreatePageMiddleware::class => PageManager\AdminMiddleware\CreatePageMiddlewareFactory::class,
+        ],
+    ],
 ];

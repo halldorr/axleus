@@ -17,6 +17,7 @@ final class PageRepositoryFactory
     public function __invoke(ContainerInterface $container): PageRepository
     {
         $config = $container->get('config');
+        $hydrator = new ReflectionHydrator();
         /** @var Adapter */
         $adapter = $container->get(AdapterInterface::class);
         return new PageRepository(
@@ -28,11 +29,11 @@ final class PageRepositoryFactory
                 $adapter,
                 null,
                 new HydratingResultSet(
-                    new ReflectionHydrator(),
+                    $hydrator,
                     new PageEntity()
                 )
             ),
-            new ReflectionHydrator(),
+            $hydrator
         );
     }
 }

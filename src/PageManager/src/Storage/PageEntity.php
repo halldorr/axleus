@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace PageManager\Storage;
 
+use Axleus\Authorization\ProprietaryInterfaceTrait;
+use Axleus\Authorization\ResourceInterfaceTrait;
 use Axleus\Db;
 use Axleus\Stdlib\Content\ContentInterface;
 
 class PageEntity implements Db\EntityInterface, ContentInterface
 {
+    use Db\EntityTrait;
+    use ProprietaryInterfaceTrait;
+    use ResourceInterfaceTrait;
+
     public function __construct(
-        private array|int|string|null $id = null,
-        private ?string $title = null,
-        private ?string $description = null
+        protected array|int|string|null $id = null,
+        protected ?string $title = null,
+        protected ?string $description = null
     ) {
     }
 
@@ -27,7 +33,7 @@ class PageEntity implements Db\EntityInterface, ContentInterface
         return $this;
     }
 
-    public function getId(): array|int|string|null
+    public function getId(): ?int
     {
         return $this->id;
     }

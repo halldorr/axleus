@@ -31,12 +31,12 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
+            'authentication'      => $this->getAuthConfig(),
             'dependencies'        => $this->getDependencies(),
+            'form_elements'       => $this->getFormElementConfig(),
             'middleware_pipeline' => $this->getPipelineConfig(),
             'templates'           => $this->getTemplates(),
-            'authentication'      => $this->getAuthConfig(),
             'routes'              => $this->getRoutes(),
-            'form_elements'       => $this->getFormElementConfig(),
             'tactician'           => $this->getCommandConfig(),
             'translator'          => $this->getTranslatorConfig(),
         ];
@@ -50,7 +50,7 @@ class ConfigProvider
         return [
             'aliases'   => [
                 AuthenticationInterface::class => PhpSession::class,
-                UserRepositoryInterface::class => UserRepository::class,
+                UserRepositoryInterface::class => Storage\UserRepository::class,
             ],
             'factories' => [
                 Auth\LoginCommandHandler::class      => Auth\LoginCommandHandlerFactory::class,
@@ -59,7 +59,7 @@ class ConfigProvider
                 Handler\LogoutHandler::class         => Handler\LogoutHandlerFactory::class,
                 Handler\ProfileHandler::class        => Handler\ProfileHandlerFactory::class,
                 Middleware\IdentityMiddleware::class => Middleware\IdentityMiddlewareFactory::class,
-                UserRepository::class                => UserRepositoryFactory::class,
+                Storage\UserRepository::class        => Storage\UserRepositoryFactory::class,
                 UserInterface::class                 => Auth\CurrentUserFactory::class,
             ],
             'invokables' => [
@@ -83,7 +83,7 @@ class ConfigProvider
         return [
             'username' => 'userName',
             'password' => 'password',
-            'details'  => ['email', 'firstName', 'lastName', 'birthday'],
+            'details'  => ['id', 'email', 'firstName', 'lastName', 'birthday'],
             'redirect' => '/user/login',
         ];
     }

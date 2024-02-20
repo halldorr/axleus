@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PageManager\Handler;
 
 use Axleus\Boards;
-use DebugBar\DebugBar;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use League\Tactician\CommandBus;
@@ -21,7 +20,7 @@ class PageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template = null,
-        private $commandBus = null,
+        private ?CommandBus $commandBus = null,
         private ?PageRepository $repo = null
     ) {
     }

@@ -6,6 +6,7 @@ namespace PageManager\Handler;
 
 use League\Tactician\CommandBus;
 use Mezzio\Template\TemplateRendererInterface;
+use PageManager\Storage\PageEntity;
 use PageManager\Storage\PageRepository;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;

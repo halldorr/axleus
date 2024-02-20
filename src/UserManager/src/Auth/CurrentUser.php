@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace UserManager\Auth;
 
+use Laminas\Permissions\Acl\ProprietaryInterface;
 use Mezzio\Authentication\UserInterface;
 
 /**
@@ -14,7 +15,7 @@ use Mezzio\Authentication\UserInterface;
  *
  * We recommend that any details injected are serializable.
  */
-final class CurrentUser implements UserInterface
+final class CurrentUser implements UserInterface, ProprietaryInterface
 {
     private string $identity;
 
@@ -33,6 +34,11 @@ final class CurrentUser implements UserInterface
         $this->identity = $identity;
         $this->roles    = $roles;
         $this->details  = $details;
+    }
+
+    public function getOwnerId()
+    {
+        return $this->getDetail('id', null);
     }
 
     public function getIdentity(): string
