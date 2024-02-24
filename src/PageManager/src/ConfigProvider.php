@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PageManager;
 
-use Axleus\Service\AdminHandlerDelegatorFactory;
+use Axleus\Authorization\AuthorizedServiceDelegator;
 use Laminas\I18n\Translator\Loader\PhpArray;
 
 use function class_exists;
@@ -68,14 +68,16 @@ class ConfigProvider
         return [
             'aliases' => [],
             'factories' => [
-                AdminHandler\CreatePageHandler::class => AdminHandler\CreatePageHandlerFactory::class,
-                Handler\PageHandler::class            => Handler\PageHandlerFactory::class,
-                Storage\PageRepository::class         => Storage\PageRepositoryFactory::class,
-                Storage\SavePageCommandHandler::class => Storage\SavePageCommandHandlerFactory::class,
+                AdminHandler\CreatePageHandler::class       => AdminHandler\CreatePageHandlerFactory::class,
+                AdminMiddleware\CreatePageMiddleware::class => AdminMiddleware\CreatePageMiddlewareFactory::class,
+                AdminMiddleware\DashBoardMiddleware::class  => AdminMiddleware\DashBoardMiddlewareFactory::class,
+                Handler\PageHandler::class                  => Handler\PageHandlerFactory::class,
+                Storage\PageRepository::class               => Storage\PageRepositoryFactory::class,
+                Storage\SavePageCommandHandler::class       => Storage\SavePageCommandHandlerFactory::class,
             ],
             'delegators' => [
                 AdminHandler\CreatePageHandler::class => [
-                    AdminHandlerDelegatorFactory::class,
+                    AuthorizedServiceDelegator::class,
                 ],
             ],
         ];
@@ -106,7 +108,7 @@ class ConfigProvider
                 'allowed_methods' => ['GET'],
             ],
             [
-                'path'            => '/admin/pagemanager/create',
+                'path'            => '/admin/pagemanager',
                 'name'            => 'admin.pagemanager.create',
                 'middleware'      => [
                     AdminMiddleware\CreatePageMiddleware::class,

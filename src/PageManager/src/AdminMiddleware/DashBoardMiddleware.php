@@ -4,22 +4,16 @@ declare(strict_types=1);
 
 namespace PageManager\AdminMiddleware;
 
-use Mezzio\Template\TemplateRendererInterface;
-use PageManager\AdminHandler\CreatePageHandler;
+use Axleus\Middleware\DashBoardMiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class CreatePageMiddleware implements MiddlewareInterface
+class DashBoardMiddleware implements MiddlewareInterface, DashBoardMiddlewareInterface
 {
-    public function __construct(
-        private TemplateRendererInterface $renderer,
-    ) {
-    }
-
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
-        return $handler->handle($request);
+        // $response = $handler->handle($request);
     }
 }

@@ -40,11 +40,6 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
     \Limatus\ConfigProvider::class,
-    // application level packages
-    \Forum\ConfigProvider::class,
-    \PageManager\ConfigProvider::class,
-    \ThemeManager\ConfigProvider::class,
-    \UserManager\ConfigProvider::class,
     // Include cache configuration
     new ArrayProvider($cacheConfig),
     ConfigProvider::class,
@@ -57,11 +52,34 @@ $aggregator = new ConfigAggregator([
         : function (): array {
             return [];
         },
-    // Default App module config
-    App\ConfigProvider::class,
-    \Axleus\ConfigProvider::class,
+    /**
+     * Core package, we do not use the component installer for this
+     * package as it must be loaded in this order
+     */
+    class_exists(\Axleus\ConfigProvider::class)
+    ? \Axleus\ConfigProvider::class
+    : function (): array {
+        return [];
+    },
+    /**
+     * App module
+     * Other modules can have dependencies to App
+     * App SHALL NOT have dependencies on other modules
+     * outside of /vendor
+     */
+    \App\ConfigProvider::class,
+    // application level packages,
+    \Forum\ConfigProvider::class,
+    \PageManager\ConfigProvider::class,
+    \ThemeManager\ConfigProvider::class,
+    \UserManager\ConfigProvider::class,
+    /**
+     * Loads last to allow plugins to override configuration as needed.
+     */
     \Axleus\PluginManager\ConfigProvider::class,
-    // do not remove
+    /**
+     * If DevTools is present load the provider
+     */
     class_exists(\Axleus\DevTools\ConfigProvider::class)
         ? \Axleus\DevTools\ConfigProvider::class
         : function(): array {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace PageManager\AdminMiddleware;
+namespace App\AdminMiddleware;
 
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 
-class CreatePageMiddlewareFactory
+class DashBoardMiddlewareFactory
 {
-    public function __invoke(ContainerInterface $container) : CreatePageMiddleware
+    public function __invoke(ContainerInterface $container) : DashBoardMiddleware
     {
-        return new CreatePageMiddleware(
+        return new DashBoardMiddleware(
             $container->get(TemplateRendererInterface::class)
         );
     }

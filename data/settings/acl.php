@@ -15,6 +15,7 @@ return [
             'Guest'         => [],
         ],
         'resources' => [ // please note that resource inheritance is not supported
+            \App\AdminHandler\DashBoardHandler::class,
             \PageManager\AdminHandler\CreatePageHandler::class,
             \PageManager\Handler\PageHandler::class,
             \UserManager\Handler\LoginHandler::class,
@@ -27,6 +28,11 @@ return [
                     'privileges' => [
                         'create', 'delete',
                     ],
+                ],
+            ],
+            'Supervisor' => [
+                \App\AdminHandler\DashBoardHandler::class => [
+                    'privileges' => ['dashboard'],
                 ],
             ],
             'Member' => [

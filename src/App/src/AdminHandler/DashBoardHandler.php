@@ -2,23 +2,19 @@
 
 declare(strict_types=1);
 
-namespace PageManager\AdminHandler;
+namespace App\AdminHandler;
 
+use Axleus\Authorization\AuthorizedServiceInterface;
 use Axleus\Authorization\AdminResourceInterface;
 use Axleus\Authorization\PrivilegeInterface;
-use Axleus\Authorization\ResourceInterfaceTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;
 
-class CreatePageHandler implements AdminResourceInterface, PrivilegeInterface, RequestHandlerInterface
+class DashBoardHandler implements AuthorizedServiceInterface, RequestHandlerInterface
 {
-    use ResourceInterfaceTrait;
-
-    public const PRIVILEGE_ID = 'create';
-
     /**
      * @var TemplateRendererInterface
      */
@@ -34,13 +30,18 @@ class CreatePageHandler implements AdminResourceInterface, PrivilegeInterface, R
         // Do some work...
         // Render and return a response:
         return new HtmlResponse($this->renderer->render(
-            'page-manager::create-page',
-            [] // parameters to pass to template
+            'app::dash-board',
+            ['layout' => 'layout::admin'] // parameters to pass to template
         ));
+    }
+
+    public function getResourceId()
+    {
+        return static::class;
     }
 
     public function getPrivilegeId(): string
     {
-        return static::PRIVILEGE_ID;
+        return 'dashboard';
     }
 }
