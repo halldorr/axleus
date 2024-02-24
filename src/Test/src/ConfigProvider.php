@@ -22,6 +22,7 @@ class ConfigProvider
             'jeff_module_config' => 'jeffs_value',
             'dependencies' => $this->getDependencies(),
             'routes' => $this->getRoutesConfig(),
+            'templates'    => $this->getTemplates(),
         ];
     }
 
@@ -40,6 +41,15 @@ class ConfigProvider
                 'path' => '/jeff/test',
                 'middleware' => Handler\CreateTestHandler::class,
                 'allowed_methods' => ['GET'],
+            ],
+        ];
+    }
+
+    public function getTemplates(): array
+    {
+        return [
+            'paths' => [
+                'test' => [__DIR__ . '/../templates/'],
             ],
         ];
     }
