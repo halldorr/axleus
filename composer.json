@@ -81,6 +81,7 @@
             "ThemeManager\\": "src/ThemeManager/src/",
             "PageManager\\": "src/PageManager/src/",
             "UserManager\\": "src/UserManager/src/",
+            "Test\\": "src/Test/src/",
             "Forum\\": "src/Forum/src/",
             "Plugin\\": "plugin/src"
         }

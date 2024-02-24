@@ -7,12 +7,13 @@
  * removing factory definitions; other dependency types may be overwritten
  * when regenerating this file via mezzio-tooling commands.
  */
-
+ 
 declare(strict_types=1);
 
 return [
     'dependencies' => [
         'factories' => [
+            Test\Handler\CreateTestHandler::class => Test\Handler\CreateTestHandlerFactory::class,
         ],
     ],
 ];

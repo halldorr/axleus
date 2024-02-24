@@ -69,6 +69,7 @@ $aggregator = new ConfigAggregator([
      */
     \App\ConfigProvider::class,
     // application level packages,
+    \Test\ConfigProvider::class,
     \Forum\ConfigProvider::class,
     \PageManager\ConfigProvider::class,
     \ThemeManager\ConfigProvider::class,
