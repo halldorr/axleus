@@ -25,8 +25,6 @@ $aggregator = new ConfigAggregator([
     \Laminas\InputFilter\ConfigProvider::class,
     \Laminas\Filter\ConfigProvider::class,
     \Laminas\Validator\ConfigProvider::class,
-    \Mezzio\Authorization\Acl\ConfigProvider::class,
-    \Mezzio\Authorization\ConfigProvider::class,
     \Mezzio\Flash\ConfigProvider::class,
     \Mezzio\Session\Ext\ConfigProvider::class,
     \Mezzio\Authentication\Session\ConfigProvider::class,
@@ -42,11 +40,6 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
     \Limatus\ConfigProvider::class,
-    // application level packages
-    \Forum\ConfigProvider::class,
-    \PageManager\ConfigProvider::class,
-    \ThemeManager\ConfigProvider::class,
-    \UserManager\ConfigProvider::class,
     // Include cache configuration
     new ArrayProvider($cacheConfig),
     ConfigProvider::class,
@@ -59,11 +52,34 @@ $aggregator = new ConfigAggregator([
         : function (): array {
             return [];
         },
-    // Default App module config
-    App\ConfigProvider::class,
-    \Axleus\ConfigProvider::class,
+    /**
+     * Core package, we do not use the component installer for this
+     * package as it must be loaded in this order
+     */
+    class_exists(\Axleus\ConfigProvider::class)
+    ? \Axleus\ConfigProvider::class
+    : function (): array {
+        return [];
+    },
+    /**
+     * App module
+     * Other modules can have dependencies to App
+     * App SHALL NOT have dependencies on other modules
+     * outside of /vendor
+     */
+    \App\ConfigProvider::class,
+    // application level packages,
+    \Forum\ConfigProvider::class,
+    \PageManager\ConfigProvider::class,
+    \ThemeManager\ConfigProvider::class,
+    \UserManager\ConfigProvider::class,
+    /**
+     * Loads last to allow plugins to override configuration as needed.
+     */
     \Axleus\PluginManager\ConfigProvider::class,
-    // do not remove
+    /**
+     * If DevTools is present load the provider
+     */
     class_exists(\Axleus\DevTools\ConfigProvider::class)
         ? \Axleus\DevTools\ConfigProvider::class
         : function(): array {
@@ -80,7 +96,7 @@ $aggregator = new ConfigAggregator([
      * loading in this order allows for any development mode settings to override them
      * without having to change the base values
      */
-    //new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/settings/{,*}.php'),
+    new PhpFileProvider(realpath(__DIR__ . '/../') . '/data/settings/{,*}.php'),
     new PhpFileProvider(realpath(__DIR__ . '/../') . '/plugin/src/*/config/{,*}.php'),
     new PhpFileProvider(realpath(__DIR__) . '/autoload/{{,*.}global,{,*.}local}.php'),
     // Load development config if it exists

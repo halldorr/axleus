@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace PageManager\Handler;
 
 use League\Tactician\CommandBus;
-use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
+use PageManager\Storage\PageEntity;
+use PageManager\Storage\PageRepository;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -23,7 +24,8 @@ class PageHandlerFactory
 
         return new PageHandler(
             $template,
-            $container->get(CommandBus::class)
+            $container->get(CommandBus::class),
+            $container->get(PageRepository::class)
         );
     }
 }

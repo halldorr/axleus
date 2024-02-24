@@ -3,36 +3,74 @@
 declare(strict_types=1);
 
 return [
-    'mezzio-authorization-acl' => [
+    'authorization' => [
         'roles'     => [
-            'Administrator' => ['manager'],
-            'manager'       => ['supervisor'],
-            'supervisor'    => ['employee'],
-            'employee'      => ['staff'],
-            'staff'         => ['customer'],
-            'customer'      => ['member'],
-            'member'        => ['guest'],
-            'guest'         => [],
+            'Administrator' => ['Manager'],
+            'Manager'       => ['Supervisor'],
+            'Supervisor'    => ['Employee'],
+            'Employee'      => ['Staff'],
+            'Staff'         => ['Customer'],
+            'Customer'      => ['Member'],
+            'Member'        => ['Guest'],
+            'Guest'         => [],
         ],
-        'resources' => [
-            'user.login',
-            'user.logout',
-            'page',
+        'resources' => [ // please note that resource inheritance is not supported
+            \App\AdminHandler\DashBoardHandler::class,
+            \PageManager\AdminHandler\CreatePageHandler::class,
+            \PageManager\Handler\PageHandler::class,
+            \UserManager\Handler\LoginHandler::class,
+            \UserManager\Handler\LogoutHandler::class,
             'home',
         ],
         'allow'     => [
-            'member' => [
-                'user.logout',
+            'Administrator' => [
+                \PageManager\AdminHandler\CreatePageHandler::class => [
+                    'privileges' => [
+                        'create', 'delete',
+                    ],
+                ],
             ],
-            'guest'  => [
-                'user.login',
-                'page',
-                'home',
+            'Supervisor' => [
+                \App\AdminHandler\DashBoardHandler::class => [
+                    'privileges' => ['dashboard'],
+                ],
+            ],
+            'Member' => [
+                \PageManager\Handler\PageHandler::class => [
+                    'privileges' => [
+                        'create',
+                    ],
+                    'assertions' => [
+                        [
+                            'assert' => \Laminas\Permissions\Acl\Assertion\OwnershipAssertion::class,
+                            'privileges' => [
+                                'edit',
+                                'delete',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'Guest'  => [
+                \UserManager\Handler\LoginHandler::class => [
+                    'privileges' => [
+                        'page',
+                        'home',
+                    ],
+                ],
             ],
         ],
         'deny'      => [
-            'member' => ['user.login'],
-            'guest'  => ['user.logout'],
+            'Member' => [
+                \UserManager\Handler\LoginHandler::class => [
+                    'privileges' => [],
+                ],
+            ],
+            'Guest'  => [
+                \UserManager\Handler\LogoutHandler::class => [
+                    'privileges' => [],
+                ],
+            ],
         ],
     ],
 ];

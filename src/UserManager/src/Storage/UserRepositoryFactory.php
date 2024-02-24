@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UserManager;
+namespace UserManager\Storage;
 
 use Laminas\Db\Adapter\AdapterInterface;
 use Mezzio\Authentication\UserRepositoryInterface;
@@ -24,7 +24,7 @@ final class UserRepositoryFactory
                 ),
                 $container->get(AdapterInterface::class)
             ),
-            $container->get('config')['authentication']
+            $config['authentication']
         );
     }
 }

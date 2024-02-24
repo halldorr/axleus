@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use Axleus\Authorization\AuthorizedServiceDelegator;
 use Laminas\I18n\Translator\Loader\PhpArray;
 
 class ConfigProvider
@@ -17,15 +18,47 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies' => $this->getDependencies(),
-            'templates'    => $this->getTemplates(),
-            'translator'   => $this->getTranslatorConfig(),
+            'dependencies'        => $this->getDependencies(),
+            //'middleware_pipeline' => $this->getPipelineConfig(),
+            'routes'              => $this->getRouteConfig(),
+            'templates'           => $this->getTemplates(),
+            'translator'          => $this->getTranslatorConfig(),
         ];
     }
 
     public function getDependencies(): array
     {
         return [
+            'factories' => [
+                AdminHandler\DashBoardHandler::class       => AdminHandler\DashBoardHandlerFactory::class,
+                AdminHandler\DashBoardHandler::class       => AdminHandler\DashBoardHandlerFactory::class,
+                AdminMiddleware\DashBoardMiddleware::class => AdminMiddleware\DashBoardMiddlewareFactory::class,
+            ],
+            'delegators' => [
+                AdminHandler\DashBoardHandler::class => [
+                    AuthorizedServiceDelegator::class
+                ],
+            ],
+        ];
+    }
+
+    public function getPipelineConfig(): array
+    {
+        return [
+        ];
+    }
+
+    public function getRouteConfig(): array
+    {
+        return [
+            [
+                'path' => '/admin/dashboard',
+                'name' => 'admin.dashboard',
+                'middleware' => [
+                    AdminMiddleware\DashBoardMiddleware::class,
+                    AdminHandler\DashBoardHandler::class
+                ],
+            ],
         ];
     }
 
@@ -36,6 +69,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
+                'app'    => [__DIR__ . '/../templates/app'],
                 'error'  => [__DIR__ . '/../templates/error'],
                 'layout' => [__DIR__ . '/../templates/layout'],
             ],
