@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\AdminHandler;
 
 use Axleus\Authorization\AuthorizedServiceInterface;
+use Axleus\Authorization\AuthorizedServiceTrait;
 use Axleus\Authorization\AdminResourceInterface;
 use Axleus\Authorization\PrivilegeInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -15,6 +16,7 @@ use Mezzio\Template\TemplateRendererInterface;
 
 class DashBoardHandler implements AuthorizedServiceInterface, RequestHandlerInterface
 {
+    use AuthorizedServiceTrait;
     /**
      * @var TemplateRendererInterface
      */
